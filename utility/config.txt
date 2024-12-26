@@ -1,0 +1,12 @@
+username=9359146811
+password=Kalyani@1234
+
+#-------------------------Database
+host=185.199.53.169
+db_user=lovenheal_user
+db_password=lovenheal_user
+database=lovenheal_server
+port=3307
+
+
+

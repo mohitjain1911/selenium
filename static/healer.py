@@ -1,0 +1,246 @@
+import random
+import time
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.keys import Keys
+from selenium import webdriver
+from utility.database import fetch_customer_names
+from utility.logs import LoggingDriver
+from selenium.webdriver.support.ui import Select
+def click_new_healer_button(driver):
+    """
+    Clicks the 'New Healer' button on the page.
+    """
+    try:
+        # Wait for the button to be clickable
+        new_healer_button = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable((By.CSS_SELECTOR, "button[data-bs-target='#new_healer']"))
+        )
+        new_healer_button.click()
+        print("Clicked 'New Healer' button.")
+    except Exception as e:
+        print(f"Error clicking 'New Healer' button: {e}")
+
+def populate_customer_name_field(driver, customer_name):
+    """
+    Populates the 'Customer Name' field with the given name and selects the corresponding option from the dropdown.
+    """ 
+    
+        # Wait for the input field to appear
+    customer_name_field = WebDriverWait(driver, 10).until(
+        EC.visibility_of_element_located((By.ID, "healer_name"))
+    )
+    customer_name_field.clear()  # Clear any existing text
+    customer_name_field.send_keys(customer_name) 
+    print(f"Populated 'Customer Name' field with: {customer_name}")
+
+    # Try to locate the name suggestion and click it
+    # You can find the suggestion by the text inside the span or by its ID, which seems to be dynamic here
+    try:
+        # Find the span element by its text content (e.g., Kalyani Bakal)
+        suggestion = driver.find_element(By.XPATH, f"//span[text()='{customer_name}']")  # Adjust for exact match
+        suggestion.click()
+        print(f"Selected suggestion for: {customer_name}")
+    except Exception as e:
+        print(f"Error: {e}")
+
+        # Optional: Print message to confirm
+    time.sleep(1)
+    print(f"Populated 'Customer Name' field with: {customer_name}") 
+
+def add_new_healer(driver):
+    logging_driver = LoggingDriver(driver)
+    logging_driver.get("http://185.199.53.169:5000/getHealers")
+    time.sleep(3)
+
+    try:
+        # Fetch customer names from the database
+        customer_names = fetch_customer_names()
+        if not customer_names:
+            print("No customer names found in the database.")
+            return
+        click_new_healer_button(driver)
+        populate_customer_name_field(driver, customer_names)
+        
+        # Populate experience in months with random data
+        experience_in_months = random.randint(1, 36)
+        experience_field = WebDriverWait(driver, 10).until(
+            EC.visibility_of_element_located((By.ID, "experienceInMonths"))
+        )
+        experience_field.clear()
+        experience_field.send_keys(experience_in_months)
+        print(f"Populated 'Experience in Months' field with: {experience_in_months}")
+        time.sleep(2)
+        # Set start time
+        start_time_input = driver.find_element(By.CSS_SELECTOR, "#Start_timeInput")
+        hours = random.randint(0, 23)
+        minutes = random.randint(0, 59)
+        time_string = f"{hours:02}:{minutes:02}"
+        start_time_input.clear()
+        start_time_input.send_keys(time_string)
+        print(f"Set start time to {time_string}")
+        time.sleep(2)
+        
+      
+        toggle_switch = driver.find_element(By.CSS_SELECTOR, ".toggle-switch_start_time")
+        am_pm_value = random.choice(["AM", "PM"])
+        # Get the current selected value by checking the "checked" attribute
+        current_am_pm = driver.find_element(By.ID, "start_time_am").is_selected()
+        if (am_pm_value == "AM" and not current_am_pm) or (am_pm_value == "PM" and current_am_pm):
+            # Click the toggle switch if the desired value is different from the current value
+            toggle_switch.click()
+            print(f"Toggled start time period to {am_pm_value}")
+        else:
+            print(f"Start time period is already set to {am_pm_value}")
+        time.sleep(2)
+
+        End_timeInput_input = driver.find_element(By.CSS_SELECTOR, "#End_timeInput")
+        hours = random.randint(0, 12)
+        minutes = random.randint(0, 59)
+        time_string = f"{hours:02}:{minutes:02}"
+        End_timeInput_input.clear()
+        End_timeInput_input.send_keys(time_string)
+        print(f"Set start time to {time_string}")
+        time.sleep(2)
+
+
+        toggle_switch = driver.find_element(By.CSS_SELECTOR, ".toggle-switch_end_time")
+        am_pm_value = random.choice(["AM", "PM"])
+        # Get the current selected value by checking the "checked" attribute
+        current_am_pm = driver.find_element(By.ID, "end_time_am").is_selected()
+        if (am_pm_value == "AM" and not current_am_pm) or (am_pm_value == "PM" and current_am_pm):
+            # Click the toggle switch if the desired value is different from the current value
+            toggle_switch.click()
+            print(f"Toggled start time period to {am_pm_value}")
+        else:
+            print(f"Start time period is already set to {am_pm_value}")
+        time.sleep(2)
+    
+        healing_minutes = random.randint(0, 59)
+        healing_minutes_field = WebDriverWait(driver, 10).until(
+            EC.visibility_of_element_located((By.ID, "healingTimeMins"))
+        )
+        healing_minutes_field.clear()
+        healing_minutes_field.send_keys(healing_minutes)
+        print(f"Populated 'healingTimeMins' field with: {healing_minutes}")
+        time.sleep(2)
+       
+        healingsPerDay = random.randint(0, 59)
+        healingsPerDay_field = WebDriverWait(driver, 10).until(
+            EC.visibility_of_element_located((By.ID, "healingsPerDay"))
+        )
+        healingsPerDay_field.clear()
+        healingsPerDay_field.send_keys(healingsPerDay)
+        print(f"Populated 'healingsPerDay' field with: {healingsPerDay}")
+        time.sleep(2)
+
+        dropdown = Select(driver.find_element(By.ID, "isDistressedHelplineMember"))
+        selected_value = random.choice(["true", "false"])
+        dropdown.select_by_value(selected_value)
+        print(f"Selected value in dropdown: {selected_value}")
+        time.sleep(2)
+        
+        # Automatic Payout
+        dropdown_automatic_payout = Select(driver.find_element(By.ID, "automaticPayout"))
+        automatic_payout_value = random.choice(["true", "false"])
+        dropdown_automatic_payout.select_by_value(automatic_payout_value)
+        print(f"Selected 'Automatic Payout': {automatic_payout_value}")
+        time.sleep(2)
+
+        # Is Inactive
+        dropdown_is_inactive = Select(driver.find_element(By.ID, "isInactive"))
+        is_inactive_value = random.choice(["true", "false"])
+        dropdown_is_inactive.select_by_value(is_inactive_value)
+        print(f"Selected 'Is Inactive': {is_inactive_value}")
+        time.sleep(2)
+
+        # Plan
+        dropdown_plan = Select(driver.find_element(By.ID, "plan"))
+        plan_value = random.choice(["FREE", "PREMIUM", "LOVENHEAL"])
+        dropdown_plan.select_by_value(plan_value)
+        print(f"Selected 'Plan': {plan_value}")
+        time.sleep(2)
+
+        # Data Verified
+        dropdown_data_verified = Select(driver.find_element(By.ID, "dataVerified"))
+        data_verified_value = random.choice(["true", "false"])
+        dropdown_data_verified.select_by_value(data_verified_value)
+        print(f"Selected 'Data Verified': {data_verified_value}")
+        time.sleep(2)
+
+        # Healer Rank
+        dropdown_healer_rank = Select(driver.find_element(By.ID, "healerRank"))
+        healer_rank_value = str(random.randint(1, 10))  # Random rank between 1 and 10
+        dropdown_healer_rank.select_by_value(healer_rank_value)
+        print(f"Selected 'Healer Rank': {healer_rank_value}")
+        time.sleep(2)
+
+        # Healing Level
+        dropdown_healing_level = Select(driver.find_element(By.ID, "healingLevel"))
+        healing_level_value = random.choice(["LEVEL1", "LEVEL2", "LEVEL3"])
+        dropdown_healing_level.select_by_value(healing_level_value)
+        print(f"Selected 'Healing Level': {healing_level_value}")
+        time.sleep(2)
+
+        # Data Verification Stage
+        dropdown_data_verification_stage = Select(driver.find_element(By.ID, "dataVerificationStage"))
+        data_verification_stage_value = random.choice([
+            "NOT_INITIATED", "INITIATED", "VERIFICATION_PENDING", 
+            "VERIFICATION_HOLD", "VERIFICATION_REJECTED", "VERIFIED"
+        ])
+        dropdown_data_verification_stage.select_by_value(data_verification_stage_value)
+        print(f"Selected 'Data Verification Stage': {data_verification_stage_value}")
+        time.sleep(2)
+
+        dropdown_id = "selectBox"
+        options_container_id = "optionsList"
+        dropdown = driver.find_element(By.ID, dropdown_id)
+        dropdown.click()
+        time.sleep(2)  # Allow dropdown to expand
+
+        # Locate all options in the dropdown
+        options = driver.find_elements(By.CSS_SELECTOR, f"#{options_container_id} .option")
+
+        if not options:
+            raise Exception("No options found in the dropdown.")
+
+        if len(options) < 10:
+            raise ValueError("Requested number of options exceeds available options.")
+
+        # Randomly select options
+        selected_options = random.sample(options, 10)
+
+        for option in selected_options:
+            option.click()  # Click to select the option
+            print(f"Selected option: {option.text.strip()}")
+            time.sleep(1)  # Pause between selections for clarity
+
+        # Optionally close the dropdown by clicking outside or on the dropdown again
+        dropdown.click()
+        
+        time.sleep(1)
+        # Locate the short bio input field
+        short_bio = driver.find_element(By.ID, "shortBio")
+        short_bio.clear()  # Clear any existing text
+        short_bio.send_keys("This is a short bio of the healer.")  # Enter the short bio
+
+        # Locate the long bio textarea
+        long_bio = driver.find_element(By.ID, "longBio")
+        long_bio.clear()  # Clear any existing text
+        long_bio.send_keys("This is a detailed and comprehensive bio of the healer, describing their experience, methods, and specialties.")  # Enter the long bio
+
+        # Optional: Verify the entered text
+        print("Short Bio:", short_bio.get_attribute("value"))
+        print("Long Bio:", long_bio.get_attribute("value"))
+
+        
+        save_button = driver.find_element(By.CSS_SELECTOR, "button.btn.btn-primary.btn-sm.px-3")
+        save_button.click()
+        time.sleep(2)  # Adjust the sleep time as needed
+        
+        ok_button = driver.find_element(By.ID, "global_Success_Message_Btn")
+        ok_button.click()
+        time.sleep(3)  # Adjust the sleep time based on how long it takes for the 
+    except Exception as e:
+        print(f"Error in adding new healer: {e}")
