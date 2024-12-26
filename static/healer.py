@@ -244,3 +244,47 @@ def add_new_healer(driver):
         time.sleep(3)  # Adjust the sleep time based on how long it takes for the 
     except Exception as e:
         print(f"Error in adding new healer: {e}")
+
+def edit_healer(driver):
+    logging_driver = LoggingDriver(driver)
+    logging_driver.get("http://185.199.53.169:5000/getHealers")
+    time.sleep(3)
+    table_rows = driver.find_elements(By.CSS_SELECTOR, "#table_body tr")
+    random_row = random.choice(table_rows)
+    random_row.click()
+    
+    # Optional: Wait for the page to load after clicking
+    time.sleep(2)
+    # Find and click the "Edit" button to open the edit form
+    edit_button = driver.find_element(By.ID, "editHealer")
+    edit_button.click()
+    time.sleep(2)  # Wait for the edit form to load
+
+    # Edit the "No Disturb Start Time"
+    no_disturb_start_time_input = driver.find_element(By.ID, "noDisturbStartTime")
+    no_disturb_start_time_input.clear()  # Clear the existing value
+    no_disturb_start_time_input.send_keys("11:00 AM")  # Set the new time
+    time.sleep(2)
+
+    # Edit the "No Disturb End Time"
+    no_disturb_end_time_input = driver.find_element(By.ID, "noDisturbEndTime")
+    no_disturb_end_time_input.clear()  # Clear the existing value
+    no_disturb_end_time_input.send_keys("12:00 PM")  # Set the new time
+    time.sleep(2)
+
+    # Edit the "Healer Rank"
+    healer_rank_input = driver.find_element(By.NAME, "healerRank")
+    healer_rank_input.clear()  # Clear the existing value
+    healer_rank_input.send_keys("1.2")  # Set the new healer rank
+    time.sleep(2)
+
+    # Edit the "Healings Per Day"
+    healings_per_day_input = driver.find_element(By.NAME, "healingsPerDay")
+    healings_per_day_input.clear()  # Clear the existing value
+    healings_per_day_input.send_keys("30")  # Set the new healings per day
+    time.sleep(2)
+
+    # Optionally, click a "Save" or "Submit" button if needed
+    # submit_button = driver.find_element(By.ID, "submitHealer")
+    # submit_button.click()
+    # time.sleep(2)
