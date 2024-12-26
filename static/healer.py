@@ -9,7 +9,6 @@ from utility.database import fetch_customer_names
 from utility.logs import LoggingDriver
 from selenium.webdriver.support.ui import Select
 def click_new_healer_button(driver):
-    # Clicks the 'New Healer' button on the page.
     try:
         # Wait for the button to be clickable
         new_healer_button = WebDriverWait(driver, 10).until(
@@ -21,18 +20,23 @@ def click_new_healer_button(driver):
         print(f"Error clicking 'New Healer' button: {e}")
 
 def populate_customer_name_field(driver, customer_name):
-    
-    # Populates the 'Customer Name' field with the given name and selects the corresponding option from the dropdown.
-     
-    # 
-        # Wait for the input field to appear
+    # Wait for the input field to appear
     customer_name_field = WebDriverWait(driver, 10).until(
         EC.visibility_of_element_located((By.ID, "healer_name"))
     )
     customer_name_field.clear()  # Clear any existing text
     customer_name_field.send_keys(customer_name) 
     print(f"Populated 'Customer Name' field with: {customer_name}")
+    dropdown_items = WebDriverWait(driver, 10).until(
+        EC.presence_of_all_elements_located((By.CSS_SELECTOR, '#Dropdown .ps-2.py-1'))
+    )
+    if dropdown_items:
+        random_choice = random.choice(dropdown_items)
 
+        driver.execute_script("arguments[0].scrollIntoView(true);", random_choice)
+
+        driver.execute_script("arguments[0].click();", random_choice)
+    
     # Try to locate the name suggestion and click it
     # You can find the suggestion by the text inside the span or by its ID, which seems to be dynamic here
     try:
@@ -43,7 +47,7 @@ def populate_customer_name_field(driver, customer_name):
     except Exception as e:
         print(f"Error: {e}")
 
-        # Optional: Print message to confirm
+    # Optional: Print message to confirm
     time.sleep(1)
     print(f"Populated 'Customer Name' field with: {customer_name}") 
 
@@ -60,8 +64,7 @@ def add_new_healer(driver):
             return
         click_new_healer_button(driver)
         populate_customer_name_field(driver, customer_names)
-        
-        # Populate experience in months with random data
+        ###########################################################################################################
         experience_in_months = random.randint(1, 36)
         experience_field = WebDriverWait(driver, 10).until(
             EC.visibility_of_element_located((By.ID, "experienceInMonths"))
@@ -70,7 +73,9 @@ def add_new_healer(driver):
         experience_field.send_keys(experience_in_months)
         print(f"Populated 'Experience in Months' field with: {experience_in_months}")
         time.sleep(2)
-        # Set start time
+        ###########################################################################################################
+       
+       
         start_time_input = driver.find_element(By.CSS_SELECTOR, "#Start_timeInput")
         hours = random.randint(0, 12)
         minutes = random.randint(0, 59)
@@ -80,7 +85,8 @@ def add_new_healer(driver):
         print(f"Set start time to {time_string}")
         time.sleep(2)
         
-      
+        ###########################################################################################################
+       
         toggle_switch = driver.find_element(By.CSS_SELECTOR, ".toggle-switch_start_time")
         am_pm_value = random.choice(["AM", "PM"])
         # Get the current selected value by checking the "checked" attribute
@@ -92,7 +98,8 @@ def add_new_healer(driver):
         else:
             print(f"Start time period is already set to {am_pm_value}")
         time.sleep(2)
-
+       ###########################################################################################################
+   
         End_timeInput_input = driver.find_element(By.CSS_SELECTOR, "#End_timeInput")
         hours = random.randint(0, 12)
         minutes = random.randint(0, 59)

@@ -32,8 +32,8 @@ def admin_tasks(driver):
 
 
 def static_tasks(driver):
-    # add_new_healer(driver)
-    edit_healer(driver)
+    add_new_healer(driver)
+    # edit_healer(driver)
 
 
 def main():
