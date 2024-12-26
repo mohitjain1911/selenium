@@ -9,9 +9,7 @@ from utility.database import fetch_customer_names
 from utility.logs import LoggingDriver
 from selenium.webdriver.support.ui import Select
 def click_new_healer_button(driver):
-    """
-    Clicks the 'New Healer' button on the page.
-    """
+    # Clicks the 'New Healer' button on the page.
     try:
         # Wait for the button to be clickable
         new_healer_button = WebDriverWait(driver, 10).until(
@@ -23,10 +21,10 @@ def click_new_healer_button(driver):
         print(f"Error clicking 'New Healer' button: {e}")
 
 def populate_customer_name_field(driver, customer_name):
-    """
-    Populates the 'Customer Name' field with the given name and selects the corresponding option from the dropdown.
-    """ 
     
+    # Populates the 'Customer Name' field with the given name and selects the corresponding option from the dropdown.
+     
+    # 
         # Wait for the input field to appear
     customer_name_field = WebDriverWait(driver, 10).until(
         EC.visibility_of_element_located((By.ID, "healer_name"))
