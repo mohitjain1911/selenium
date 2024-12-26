@@ -283,6 +283,17 @@ def edit_healer(driver):
     healings_per_day_input.clear()  # Clear the existing value
     healings_per_day_input.send_keys("30")  # Set the new healings per day
     time.sleep(2)
+    healing_time_input = driver.find_element(By.NAME, "healingTimeMins")
+    healing_time_input.clear()  # Clear the existing value
+    healing_time_input.send_keys("16")  # Set the new healing time
+    time.sleep(2)
+
+    # Edit the "Experience in Months"
+    experience_months_input = driver.find_element(By.NAME, "experienceInMonths")
+    experience_months_input.clear()  # Clear the existing value
+    experience_months_input.send_keys("2")  # Set the new experience in months
+    time.sleep(2)
+
 
     # Optionally, click a "Save" or "Submit" button if needed
     # submit_button = driver.find_element(By.ID, "submitHealer")
