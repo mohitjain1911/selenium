@@ -74,7 +74,7 @@ def add_new_healer(driver):
         time.sleep(2)
         # Set start time
         start_time_input = driver.find_element(By.CSS_SELECTOR, "#Start_timeInput")
-        hours = random.randint(0, 23)
+        hours = random.randint(0, 12)
         minutes = random.randint(0, 59)
         time_string = f"{hours:02}:{minutes:02}"
         start_time_input.clear()
