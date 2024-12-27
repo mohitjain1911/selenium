@@ -326,7 +326,7 @@ def edit_healer(driver):
 
     print(f"Selected {num_checkboxes} random checkboxes.")
     ##################################################################################################################################
-    
+
     # Select a random option for healingLevel
     healing_level_dropdown = Select(driver.find_element(By.ID, "healingLevel"))
     random_healing_level = random.choice(["LEVEL1", "LEVEL2", "LEVEL3"])
@@ -370,13 +370,34 @@ def edit_healer(driver):
     flex_switch = driver.find_element(By.ID, "flexSwitchCheckChecked")
     flex_switch.click()
     time.sleep(2)
+    short_bio_text = "This is a short bio example."
+    long_bio_text = "This is a detailed long bio example, demonstrating automation of text input in textareas using Selenium."
+    short_bio = WebDriverWait(driver, 10).until(
+        EC.presence_of_element_located((By.NAME, "shortBio"))
+    )
+    short_bio.clear()  # Clear any existing text
+    short_bio.send_keys(short_bio_text)
+    print("Short bio filled.")
+
+    # Step 2: Locate and fill the long bio textarea
+    long_bio = WebDriverWait(driver, 10).until(
+        EC.presence_of_element_located((By.NAME, "longBio"))
+    )
+    long_bio.clear()  # Clear any existing text
+    long_bio.send_keys(long_bio_text)
+    print("Long bio filled.")
 
     print("All elements interacted with successfully.")
 
-    # Optionally, click a "Save" or "Submit" button if needed
-    # submit_button = driver.find_element(By.ID, "submitHealer")
-    # submit_button.click()
-    # time.sleep(2)
+    save_button = WebDriverWait(driver, 10).until(
+        EC.element_to_be_clickable((By.ID, "saveHealer"))
+    )
+    save_button.click()  # Click the button
+    print("Save button clicked.")
+    
+    ok_button = driver.find_element(By.ID, "global_Success_Message_Btn")
+    ok_button.click()
+    time.sleep(3)  # Adjust the sleep time based on how long it takes for the 
 
 def delete_healer(driver):
     logging_driver = LoggingDriver(driver)
