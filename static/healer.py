@@ -388,13 +388,13 @@ def edit_healer(driver):
     print("Long bio filled.")
 
     print("All elements interacted with successfully.")
-
+    scroll(driver, direction="up", amount=300) 
+    time.sleep(3)
     save_button = WebDriverWait(driver, 10).until(
-        EC.element_to_be_clickable((By.ID, "saveHealer"))
+        EC.presence_of_element_located((By.ID, "saveHealer"))
     )
-    save_button.click()  # Click the button
-    print("Save button clicked.")
-    
+    save_button.click()
+
     ok_button = driver.find_element(By.ID, "global_Success_Message_Btn")
     ok_button.click()
     time.sleep(3)  # Adjust the sleep time based on how long it takes for the 
@@ -414,3 +414,20 @@ def delete_healer(driver):
     delete_button = driver.find_element(By.ID, "delete")
     delete_button.click()
     time.sleep(2)
+def scroll(driver, direction="down", amount=700):
+    """
+    Scroll the page either up or down.
+
+    :param driver: The WebDriver instance (e.g., Chrome, Firefox)
+    :param direction: "up" or "down", determines the scroll direction
+    :param amount: The amount of pixels to scroll
+    """
+    if direction == "down":
+        driver.execute_script(f"window.scrollBy(0, {amount});")
+    elif direction == "up":
+        driver.execute_script(f"window.scrollBy(0, -{amount});")
+    else:
+        print("Invalid direction. Use 'up' or 'down'.")
+
+    # Wait for the page to adjust after scrolling
+    time.sleep(1)
