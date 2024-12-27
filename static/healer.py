@@ -254,11 +254,11 @@ def edit_healer(driver):
     logging_driver = LoggingDriver(driver)
     logging_driver.get("http://185.199.53.169:5000/getHealers")
     time.sleep(3)
+
+
     table_rows = driver.find_elements(By.CSS_SELECTOR, "#table_body tr")
     random_row = random.choice(table_rows)
     random_row.click()
-    
-    # Optional: Wait for the page to load after clicking
     time.sleep(2)
     # Find and click the "Edit" button to open the edit form
     edit_button = driver.find_element(By.ID, "editHealer")
@@ -299,8 +299,97 @@ def edit_healer(driver):
     experience_months_input.send_keys("2")  # Set the new experience in months
     time.sleep(2)
 
+    ######################################################################################################################################
+    dropdown_selector = "#selectBox"  # Selector for the dropdown
+    checkbox_selector = ".options input.option"  # Adjust to target checkboxes inside the dropdown
+    dropdown = WebDriverWait(driver, 10).until(
+        EC.element_to_be_clickable((By.CSS_SELECTOR, dropdown_selector))
+    )
+    dropdown.click()
+    time.sleep(2)  # Wait for the dropdown to expand
+
+    # Step 2: Locate all checkboxes
+    checkboxes = WebDriverWait(driver, 10).until(
+        EC.presence_of_all_elements_located((By.CSS_SELECTOR, checkbox_selector))
+    )
+    num_checkboxes=10
+    # Ensure we do not select more checkboxes than available
+    num_checkboxes = min(num_checkboxes, len(checkboxes))
+
+    # Step 3: Randomly select checkboxes
+    selected_checkboxes = random.sample(checkboxes, num_checkboxes)
+    for checkbox in selected_checkboxes:
+        driver.execute_script("arguments[0].scrollIntoView(true);", checkbox)  # Ensure visibility
+        if not checkbox.is_selected():
+            checkbox.click()
+            time.sleep(1)  # Small delay between clicks
+
+    print(f"Selected {num_checkboxes} random checkboxes.")
+    ##################################################################################################################################
+    
+    # Select a random option for healingLevel
+    healing_level_dropdown = Select(driver.find_element(By.ID, "healingLevel"))
+    random_healing_level = random.choice(["LEVEL1", "LEVEL2", "LEVEL3"])
+    healing_level_dropdown.select_by_value(random_healing_level)
+    time.sleep(2)
+
+    # Select a random option for dataVerificationStage
+    verification_stage_dropdown = Select(driver.find_element(By.ID, "dataVerificationStage"))
+    random_verification_stage = random.choice([
+        "NOT_INITIATED", "INITIATED", "VERIFICATION_PENDING", 
+        "VERIFICATION_HOLD", "VERIFICATION_REJECTED", "VERIFIED"
+    ])
+    verification_stage_dropdown.select_by_value(random_verification_stage)
+    time.sleep(2)
+
+    # Select a random option for plan
+    plan_dropdown = Select(driver.find_element(By.ID, "plan"))
+    random_plan = random.choice(["FREE", "PREMIUM", "LOVENHEAL"])
+    plan_dropdown.select_by_value(random_plan)
+    time.sleep(2)
+
+    # Choose "Yes" or "No" for dataVerified
+    data_verified_option = random.choice(["dataVerifiedYes", "dataVerifiedNo"])
+    data_verified_radio = driver.find_element(By.ID, data_verified_option)
+    data_verified_radio.click()
+    time.sleep(2)
+
+    # Choose "Yes" or "No" for automaticPayout
+    automatic_payout_option = random.choice(["isautomaticPayoutYes", "isautomaticPayoutNo"])
+    automatic_payout_radio = driver.find_element(By.ID, automatic_payout_option)
+    automatic_payout_radio.click()
+    time.sleep(2)
+
+    # Choose "Yes" or "No" for isDistressedHelplineMember
+    distressed_option = random.choice(["isDistressedYes", "isDistressedNo"])
+    distressed_radio = driver.find_element(By.ID, distressed_option)
+    distressed_radio.click()
+    time.sleep(2)
+
+    # Toggle the checkbox (switch) state
+    flex_switch = driver.find_element(By.ID, "flexSwitchCheckChecked")
+    flex_switch.click()
+    time.sleep(2)
+
+    print("All elements interacted with successfully.")
 
     # Optionally, click a "Save" or "Submit" button if needed
     # submit_button = driver.find_element(By.ID, "submitHealer")
     # submit_button.click()
     # time.sleep(2)
+
+def delete_healer(driver):
+    logging_driver = LoggingDriver(driver)
+    logging_driver.get("http://185.199.53.169:5000/getHealers")
+    time.sleep(3)
+    table_rows = driver.find_elements(By.CSS_.options .option, "#table_body tr")
+    random_row = random.choice(table_rows)
+    random_row.click()
+    view_all_healers_link = driver.find_element(By.XPATH, '//a[@href="/getHealers"]')
+    view_all_healers_link.click()
+    time.sleep(2)
+
+    # Click the "Delete" button
+    delete_button = driver.find_element(By.ID, "delete")
+    delete_button.click()
+    time.sleep(2)
