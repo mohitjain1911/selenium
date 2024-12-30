@@ -6,6 +6,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.keys import Keys
 from selenium import webdriver
 from utility.database import fetch_customer_names
+from selenium.common.exceptions import NoSuchElementException
 from utility.logs import LoggingDriver
 from selenium.webdriver.support.ui import Select
 def click_new_healer_button(driver):
@@ -298,7 +299,7 @@ def edit_healer(driver):
     experience_months_input.clear()  # Clear the existing value
     experience_months_input.send_keys("2")  # Set the new experience in months
     time.sleep(2)
-
+    scroll()
     ######################################################################################################################################
     dropdown_selector = "#selectBox"  # Selector for the dropdown
     checkbox_selector = ".options input.option"  # Adjust to target checkboxes inside the dropdown
@@ -386,19 +387,31 @@ def edit_healer(driver):
     long_bio.clear()  # Clear any existing text
     long_bio.send_keys(long_bio_text)
     print("Long bio filled.")
-
     print("All elements interacted with successfully.")
-    scroll(driver, direction="up", amount=300) 
     time.sleep(3)
+    
+    # scroll(driver, direction="up", amount=700) 
     save_button = WebDriverWait(driver, 10).until(
         EC.presence_of_element_located((By.ID, "saveHealer"))
     )
+    save_button = driver.find_element(By.XPATH, '//*[@id="saveHealer"]')
     save_button.click()
+    time.sleep(3)
 
-    ok_button = driver.find_element(By.ID, "global_Success_Message_Btn")
-    ok_button.click()
-    time.sleep(3)  # Adjust the sleep time based on how long it takes for the 
-
+    try:
+        # Try to locate the "success" button by its specific ID
+        success_button = driver.find_element("id", "global_Success_Message_Btn")
+        success_button.click()  # Click the success button if found
+        print("Clicked the success button!")
+    except NoSuchElementException:
+        try:
+            # If the "success" button is not found, try to locate the generic button by its class or text
+            generic_button = driver.find_element("xpath", "//button[text()='OK' and @data-bs-dismiss='modal']")
+            generic_button.click()  # Click the generic button if found
+            print("Clicked the generic button!")
+        except NoSuchElementException:
+            # If neither button is found, handle accordingly
+            print("No button found!")
 def delete_healer(driver):
     logging_driver = LoggingDriver(driver)
     logging_driver.get("http://185.199.53.169:5000/getHealers")
@@ -414,6 +427,7 @@ def delete_healer(driver):
     delete_button = driver.find_element(By.ID, "delete")
     delete_button.click()
     time.sleep(2)
+
 def scroll(driver, direction="down", amount=700):
     """
     Scroll the page either up or down.
