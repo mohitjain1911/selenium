@@ -19,7 +19,7 @@ def fetch_customer_names():
         )
 
         cursor = connection.cursor()
-        cursor.execute("select first_name from users LIMIT 1")  # Update the table/column names as needed
+        cursor.execute("SELECT first_name FROM users ORDER BY RAND() LIMIT 1")  # Update the table/column names as needed
         results = cursor.fetchall()
 
         # Extract names from query results
