@@ -128,3 +128,102 @@
 2024-12-30 16:14:34.615400 - Find Element - Pass - Located element: 'OK'
 2024-12-30 16:14:34.659153 - Click - Pass - Clicked element: 'OK'
 2024-12-30 16:14:37.279035 - Quit Browser - Pass - Closed the browser
+2024-12-30 16:23:48.786606 - Navigation - Pass - Navigated to URL: http://185.199.53.169:5000/login
+2024-12-30 16:23:48.855230 - Find Element - Pass - Located element: 'username'
+2024-12-30 16:23:48.899974 - Find Element - Pass - Located element: 'password'
+2024-12-30 16:23:49.018243 - Send Keys - Pass - Entered '9359146811' into element: 'Enter your 10 digits phone number'
+2024-12-30 16:23:49.198222 - Send Keys - Pass - Entered 'Kalyani@1234
+' into element: '********'
+2024-12-30 16:23:55.465248 - Navigation - Pass - Navigated to URL: http://185.199.53.169:5000/getHealers
+2024-12-30 16:23:55.466584 - Navigation - Pass - Navigated to URL: http://185.199.53.169:5000/getHealers
+2024-12-30 16:24:00.782695 - Quit Browser - Pass - Closed the browser
+2024-12-30 16:24:40.995840 - Navigation - Pass - Navigated to URL: http://185.199.53.169:5000/login
+2024-12-30 16:24:41.055557 - Find Element - Pass - Located element: 'username'
+2024-12-30 16:24:41.115781 - Find Element - Pass - Located element: 'password'
+2024-12-30 16:24:41.256320 - Send Keys - Pass - Entered '9359146811' into element: 'Enter your 10 digits phone number'
+2024-12-30 16:24:41.441172 - Send Keys - Pass - Entered 'Kalyani@1234
+' into element: '********'
+2024-12-30 16:24:45.794463 - Navigation - Pass - Navigated to URL: http://185.199.53.169:5000/getHealers
+2024-12-30 16:24:45.795883 - Navigation - Pass - Navigated to URL: http://185.199.53.169:5000/getHealers
+2024-12-30 16:24:51.117336 - Quit Browser - Pass - Closed the browser
+2024-12-30 16:25:49.620536 - Navigation - Pass - Navigated to URL: http://185.199.53.169:5000/login
+2024-12-30 16:25:49.692865 - Find Element - Pass - Located element: 'username'
+2024-12-30 16:25:49.752464 - Find Element - Pass - Located element: 'password'
+2024-12-30 16:25:49.891475 - Send Keys - Pass - Entered '9359146811' into element: 'Enter your 10 digits phone number'
+2024-12-30 16:25:50.060263 - Send Keys - Pass - Entered 'Kalyani@1234
+' into element: '********'
+2024-12-30 16:25:54.620745 - Navigation - Pass - Navigated to URL: http://185.199.53.169:5000/getHealers
+2024-12-30 16:25:54.620745 - Navigation - Pass - Navigated to URL: http://185.199.53.169:5000/getHealers
+2024-12-30 16:25:58.115584 - Find Element - Pass - Located element: 'a'
+2024-12-30 16:25:58.155476 - Click - Pass - Clicked element: 'Unnamed Element'
+2024-12-30 16:26:00.842156 - Quit Browser - Pass - Closed the browser
+2024-12-30 16:28:20.741758 - Navigation - Pass - Navigated to URL: http://185.199.53.169:5000/login
+2024-12-30 16:28:20.808871 - Find Element - Pass - Located element: 'username'
+2024-12-30 16:28:20.861141 - Find Element - Pass - Located element: 'password'
+2024-12-30 16:28:21.013005 - Send Keys - Pass - Entered '9359146811' into element: 'Enter your 10 digits phone number'
+2024-12-30 16:28:21.192788 - Send Keys - Pass - Entered 'Kalyani@1234
+' into element: '********'
+2024-12-30 16:28:25.692079 - Navigation - Pass - Navigated to URL: http://185.199.53.169:5000/getHealers
+2024-12-30 16:28:25.692079 - Navigation - Pass - Navigated to URL: http://185.199.53.169:5000/getHealers
+2024-12-30 16:28:29.212668 - Find Element - Pass - Located element: 'View all healers'
+2024-12-30 16:28:29.262196 - Click - Pass - Clicked element: 'View all healers'
+2024-12-30 16:28:33.106632 - Find Element - Pass - Located element: 'Delete'
+2024-12-30 16:28:33.159021 - Click - Pass - Clicked element: 'Delete'
+2024-12-30 16:28:37.582309 - Quit Browser - Pass - Closed the browser
+2024-12-30 16:31:51.083086 - Navigation - Pass - Navigated to URL: http://185.199.53.169:5000/login
+2024-12-30 16:31:51.148662 - Find Element - Pass - Located element: 'username'
+2024-12-30 16:31:51.198166 - Find Element - Pass - Located element: 'password'
+2024-12-30 16:31:51.332697 - Send Keys - Pass - Entered '9359146811' into element: 'Enter your 10 digits phone number'
+2024-12-30 16:31:51.513637 - Send Keys - Pass - Entered 'Kalyani@1234
+' into element: '********'
+2024-12-30 16:31:56.159450 - Navigation - Pass - Navigated to URL: http://185.199.53.169:5000/getHealers
+2024-12-30 16:31:56.159450 - Navigation - Pass - Navigated to URL: http://185.199.53.169:5000/getHealers
+2024-12-30 16:31:59.942514 - Find Element - Pass - Located element: 'View all healers'
+2024-12-30 16:32:00.000776 - Click - Pass - Clicked element: 'View all healers'
+2024-12-30 16:32:03.105477 - Find Element - Pass - Located element: 'Delete'
+2024-12-30 16:32:03.163143 - Click - Pass - Clicked element: 'Delete'
+2024-12-30 16:32:17.763360 - Quit Browser - Pass - Closed the browser
+2024-12-30 16:34:22.352469 - Navigation - Pass - Navigated to URL: http://185.199.53.169:5000/login
+2024-12-30 16:34:22.407558 - Find Element - Pass - Located element: 'username'
+2024-12-30 16:34:22.454396 - Find Element - Pass - Located element: 'password'
+2024-12-30 16:34:22.587686 - Send Keys - Pass - Entered '9359146811' into element: 'Enter your 10 digits phone number'
+2024-12-30 16:34:22.763973 - Send Keys - Pass - Entered 'Kalyani@1234
+' into element: '********'
+2024-12-30 16:34:28.812456 - Navigation - Pass - Navigated to URL: http://185.199.53.169:5000/getHealers
+2024-12-30 16:34:28.813527 - Navigation - Pass - Navigated to URL: http://185.199.53.169:5000/getHealers
+2024-12-30 16:34:32.558782 - Find Element - Pass - Located element: 'View all healers'
+2024-12-30 16:34:32.610408 - Click - Pass - Clicked element: 'View all healers'
+2024-12-30 16:34:35.329250 - Find Element - Pass - Located element: 'Delete'
+2024-12-30 16:34:35.385353 - Click - Pass - Clicked element: 'Delete'
+2024-12-30 16:34:37.495973 - Find Element - Pass - Located element: 'No'
+2024-12-30 16:34:37.567606 - Click - Pass - Clicked element: 'No'
+2024-12-30 16:34:37.738400 - Click - Pass - Clicked element: 'Delete'
+2024-12-30 16:34:40.049752 - Find Element - Pass - Located element: 'Yes'
+2024-12-30 16:34:40.108076 - Click - Pass - Clicked element: 'Yes'
+2024-12-30 16:34:42.677043 - Quit Browser - Pass - Closed the browser
+2024-12-30 16:37:55.443365 - Navigation - Pass - Navigated to URL: http://185.199.53.169:5000/login
+2024-12-30 16:37:55.501673 - Find Element - Pass - Located element: 'username'
+2024-12-30 16:37:55.572443 - Find Element - Pass - Located element: 'password'
+2024-12-30 16:37:55.690923 - Send Keys - Pass - Entered '9359146811' into element: 'Enter your 10 digits phone number'
+2024-12-30 16:37:55.857787 - Send Keys - Pass - Entered 'Kalyani@1234
+' into element: '********'
+2024-12-30 16:38:00.710948 - Navigation - Pass - Navigated to URL: http://185.199.53.169:5000/getHealers
+2024-12-30 16:38:00.711005 - Navigation - Pass - Navigated to URL: http://185.199.53.169:5000/getHealers
+2024-12-30 16:38:04.134630 - Find Element - Pass - Located element: 'View all healers'
+2024-12-30 16:38:04.187797 - Click - Pass - Clicked element: 'View all healers'
+2024-12-30 16:38:07.067929 - Find Element - Pass - Located element: 'Delete'
+2024-12-30 16:38:07.125205 - Click - Pass - Clicked element: 'Delete'
+2024-12-30 16:38:09.247525 - Find Element - Pass - Located element: 'No'
+2024-12-30 16:38:09.305760 - Click - Pass - Clicked element: 'No'
+2024-12-30 16:38:09.461680 - Click - Pass - Clicked element: 'Delete'
+2024-12-30 16:38:11.769478 - Find Element - Pass - Located element: 'Yes'
+2024-12-30 16:38:11.831246 - Click - Pass - Clicked element: 'Yes'
+2024-12-30 16:38:14.262172 - Find Element - Pass - Located element: 'OK'
+2024-12-30 16:38:14.305556 - Click - Pass - Clicked element: 'OK'
+2024-12-30 16:38:16.847555 - Quit Browser - Pass - Closed the browser
+2024-12-30 16:43:13.763182 - Navigation - Pass - Navigated to URL: http://185.199.53.169:5000/login
+2024-12-30 16:43:13.823932 - Find Element - Pass - Located element: 'username'
+2024-12-30 16:43:13.881487 - Find Element - Pass - Located element: 'password'
+2024-12-30 16:43:14.001097 - Send Keys - Pass - Entered '9359146811' into element: 'Enter your 10 digits phone number'
+2024-12-30 16:43:14.127448 - Send Keys - Pass - Entered 'Kalyani@1234
+' into element: '********'

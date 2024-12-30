@@ -415,18 +415,65 @@ def edit_healer(driver):
 def delete_healer(driver):
     logging_driver = LoggingDriver(driver)
     logging_driver.get("http://185.199.53.169:5000/getHealers")
+    print("Navigated to 'getHealers' page.")
     time.sleep(3)
-    table_rows = driver.find_elements(By.CSS_.options .option, "#table_body tr")
+
+    table_rows = driver.find_elements(By.CSS_SELECTOR, "#table_body tr")
     random_row = random.choice(table_rows)
     random_row.click()
-    view_all_healers_link = driver.find_element(By.XPATH, '//a[@href="/getHealers"]')
+    print("Clicked on a random healer row.")
+
+    view_all_healers_link = driver.find_element(By.XPATH, '/html/body/div[4]/div[1]/div[1]/form/div[2]/a')
     view_all_healers_link.click()
+    print("Clicked 'View All Healers' link.")
     time.sleep(2)
 
-    # Click the "Delete" button
+    table_rows = driver.find_elements(By.CSS_SELECTOR, "#table_body tr")
+    random_row = random.choice(table_rows)
+    random_row.click()
+    print("Clicked on a random healer row again.")
+
     delete_button = driver.find_element(By.ID, "delete")
     delete_button.click()
+    print("Clicked Delete button.")
     time.sleep(2)
+    
+    # Click the "No" button in the confirmation dialog
+    no_button = WebDriverWait(driver, 10).until(
+        EC.element_to_be_clickable((By.XPATH, "/html/body/div[4]/div[1]/div[2]/div/div/div/div[2]/div/form/button[2]"))
+    )
+    no_button.click()
+    print("Clicked 'No' button in the confirmation dialog.")
+    
+    # Click the "Delete" button again
+    delete_button = driver.find_element(By.ID, "delete")
+    delete_button.click()
+    print("Clicked Delete button again.")
+    time.sleep(2)
+
+    # Click the "Yes" button to confirm deletion
+    yes_button = WebDriverWait(driver, 10).until(
+        EC.element_to_be_clickable((By.XPATH, "/html/body/div[4]/div[1]/div[2]/div/div/div/div[2]/div/form/button[1]"))
+    )
+    yes_button.click()
+    print("Clicked 'Yes' button to confirm deletion.")
+    time.sleep(2)
+
+    try:
+        # Try to locate the "success" button by its specific ID
+        success_button = driver.find_element("id", "global_Success_Message_Btn")
+        success_button.click()  # Click the success button if found
+        print("Clicked the success button!")
+    except NoSuchElementException:
+        try:
+            # If the "success" button is not found, try to locate the generic button by its class or text
+            generic_button = driver.find_element("xpath", "//button[text()='OK' and @data-bs-dismiss='modal']")
+            generic_button.click()  # Click the generic button if found
+            print("Clicked the generic button!")
+        except NoSuchElementException:
+            # If neither button is found, handle accordingly
+            print("No button found!")
+
 
 def scroll(driver, direction="down", amount=700):
     """
