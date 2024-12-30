@@ -9,3 +9,159 @@
 2024-12-30 16:50:48.995730 - Find Element - Pass - Located element: 'New'
 2024-12-30 16:50:49.063558 - Click - Pass - Clicked element: 'New'
 2024-12-30 16:50:49.187605 - Find Element - Pass - Located element: 'healer_name'
+2024-12-30 16:50:49.886498 - Send Keys - Pass - Entered '[None]' into element: 'Customer name'
+2024-12-30 16:50:50.179480 - Navigation - Pass - Navigated to URL: http://185.199.53.169:5000/getHealers
+2024-12-30 16:50:50.180496 - Navigation - Pass - Navigated to URL: http://185.199.53.169:5000/getHealers
+2024-12-30 16:50:55.640817 - Find Element - Pass - Located element: 'Edit'
+2024-12-30 16:50:55.686730 - Click - Pass - Clicked element: 'Edit'
+2024-12-30 16:50:57.811320 - Find Element - Pass - Located element: 'noDisturbStartTime'
+2024-12-30 16:50:57.909815 - Send Keys - Pass - Entered '11:00 AM' into element: 'noDisturbStartTime'
+2024-12-30 16:51:00.099504 - Find Element - Pass - Located element: 'noDisturbEndTime'
+2024-12-30 16:51:00.174289 - Send Keys - Pass - Entered '12:00 PM' into element: 'noDisturbEndTime'
+2024-12-30 16:51:02.332954 - Find Element - Pass - Located element: 'healerRank'
+2024-12-30 16:51:02.420328 - Send Keys - Pass - Entered '1.2' into element: 'healerRank'
+2024-12-30 16:51:04.559730 - Find Element - Pass - Located element: 'healingsPerDay'
+2024-12-30 16:51:04.663878 - Send Keys - Pass - Entered '30' into element: 'healingsPerDay'
+2024-12-30 16:51:06.792884 - Find Element - Pass - Located element: 'healingTimeMins'
+2024-12-30 16:51:06.872188 - Send Keys - Pass - Entered '16' into element: 'healingTimeMins'
+2024-12-30 16:51:09.022478 - Find Element - Pass - Located element: 'experienceInMonths'
+2024-12-30 16:51:09.127658 - Send Keys - Pass - Entered '2' into element: 'experienceInMonths'
+2024-12-30 16:51:11.234563 - Execute Script - Pass - Executed script: 'window.scrollBy(0, -700);' with arguments: ()
+2024-12-30 16:51:19.467847 - Navigation - Pass - Navigated to URL: http://185.199.53.169:5000/login
+2024-12-30 16:51:19.535957 - Find Element - Pass - Located element: 'username'
+2024-12-30 16:51:19.588970 - Find Element - Pass - Located element: 'password'
+2024-12-30 16:51:19.719387 - Send Keys - Pass - Entered '9359146811' into element: 'Enter your 10 digits phone number'
+2024-12-30 16:51:19.906726 - Send Keys - Pass - Entered 'Kalyani@1234
+' into element: '********'
+2024-12-30 16:51:24.653942 - Navigation - Pass - Navigated to URL: http://185.199.53.169:5000/getHealers
+2024-12-30 16:51:24.653942 - Navigation - Pass - Navigated to URL: http://185.199.53.169:5000/getHealers
+2024-12-30 16:51:27.852179 - Find Element - Pass - Located element: 'New'
+2024-12-30 16:51:27.912496 - Click - Pass - Clicked element: 'New'
+2024-12-30 16:51:28.023939 - Find Element - Pass - Located element: 'healer_name'
+2024-12-30 16:51:28.644013 - Send Keys - Pass - Entered '['Amisha']' into element: 'Customer name'
+2024-12-30 16:51:29.775605 - Execute Script - Pass - Executed script: 'arguments[0].scrollIntoView(true);' with arguments: (<selenium.webdriver.remote.webelement.WebElement (session="a7a36ee86fbc2cd1a9efb219f4f61d46", element="f.A24860029D55F13A074B51FBEF7C3EC0.d.2BD47803EA9474D4EF7651F62550EDC3.e.424")>,)
+2024-12-30 16:51:29.788012 - Execute Script - Pass - Executed script: 'arguments[0].click();' with arguments: (<selenium.webdriver.remote.webelement.WebElement (session="a7a36ee86fbc2cd1a9efb219f4f61d46", element="f.A24860029D55F13A074B51FBEF7C3EC0.d.2BD47803EA9474D4EF7651F62550EDC3.e.424")>,)
+2024-12-30 16:51:30.872232 - Find Element - Pass - Located element: 'experienceInMonths'
+2024-12-30 16:51:30.956318 - Send Keys - Pass - Entered '12' into element: 'Experience in months'
+2024-12-30 16:51:33.056394 - Find Element - Pass - Located element: 'Start_timeInput'
+2024-12-30 16:51:33.122794 - Send Keys - Pass - Entered '12:59' into element: 'HH:mm'
+2024-12-30 16:51:35.256441 - Find Element - Pass - Located element: 'div'
+2024-12-30 16:51:35.290048 - Find Element - Pass - Located element: 'start_time_period'
+2024-12-30 16:51:35.339308 - Click - Pass - Clicked element: 'toggle-switch_start_time'
+2024-12-30 16:51:37.442593 - Find Element - Pass - Located element: 'End_timeInput'
+2024-12-30 16:51:37.508551 - Send Keys - Pass - Entered '09:03' into element: 'HH:mm'
+2024-12-30 16:51:39.674938 - Find Element - Pass - Located element: 'period'
+2024-12-30 16:51:41.724111 - Find Element - Pass - Located element: 'healingTimeMins'
+2024-12-30 16:51:41.802856 - Send Keys - Pass - Entered '4' into element: 'Healing time in minutes'
+2024-12-30 16:51:43.896374 - Find Element - Pass - Located element: 'healingsPerDay'
+2024-12-30 16:51:43.967175 - Send Keys - Pass - Entered '49' into element: 'Healings per day'
+2024-12-30 16:51:46.073270 - Find Element - Pass - Located element: 'Select
+                            False
+                            True'
+2024-12-30 16:51:48.171240 - Find Element - Pass - Located element: 'Select payout
+                            True
+                            False'
+2024-12-30 16:51:52.356315 - Find Element - Pass - Located element: 'Select Plan
+                            Free
+                            Premium
+                            LoveNHeal'
+2024-12-30 16:51:54.447327 - Find Element - Pass - Located element: 'Select
+                            True
+                            False'
+2024-12-30 16:51:56.537448 - Find Element - Pass - Located element: 'Select rank
+                            
+                                1
+                            
+                                2
+                            
+                                3
+                            
+                                4
+                            
+                                5
+                            
+                                6
+                            
+                                7
+                            
+                                8
+                            
+                                9
+                            
+                                10'
+2024-12-30 16:51:58.626187 - Find Element - Pass - Located element: 'Select
+                            LEVEL1
+                            LEVEL2
+                            LEVEL3'
+2024-12-30 16:52:00.722599 - Find Element - Pass - Located element: 'Select
+                            Not Initiated
+                            Initiated
+                            Verification Pending
+                            Verification Hold
+                            Verification Rejected
+                            Verified'
+2024-12-30 16:52:02.816097 - Find Element - Pass - Located element: 'Choose an option'
+2024-12-30 16:52:02.861659 - Click - Pass - Clicked element: 'Choose an option'
+2024-12-30 16:52:15.742684 - Click - Pass - Clicked element: 'Tibetan Eye Chart'
+2024-12-30 16:52:16.840832 - Find Element - Pass - Located element: 'shortBio'
+2024-12-30 16:52:16.902647 - Send Keys - Pass - Entered 'This is a short bio of the healer.' into element: 'Write a short bio of healer'
+2024-12-30 16:52:17.163863 - Find Element - Pass - Located element: 'longBio'
+2024-12-30 16:52:17.225374 - Send Keys - Pass - Entered 'This is a detailed and comprehensive bio of the healer, describing their experience, methods, and specialties.' into element: 'Write a long bio of healer'
+2024-12-30 16:52:17.921705 - Find Element - Pass - Located element: 'Save'
+2024-12-30 16:52:17.973119 - Click - Pass - Clicked element: 'Save'
+2024-12-30 16:52:20.091031 - Find Element - Pass - Located element: 'button'
+2024-12-30 16:52:20.127310 - Click - Pass - Clicked element: 'btn'
+2024-12-30 16:52:20.465830 - Navigation - Pass - Navigated to URL: http://185.199.53.169:5000/getHealers
+2024-12-30 16:52:20.466947 - Navigation - Pass - Navigated to URL: http://185.199.53.169:5000/getHealers
+2024-12-30 16:52:26.198517 - Find Element - Pass - Located element: 'Edit'
+2024-12-30 16:52:26.241483 - Click - Pass - Clicked element: 'Edit'
+2024-12-30 16:52:28.358239 - Find Element - Pass - Located element: 'noDisturbStartTime'
+2024-12-30 16:52:28.450595 - Send Keys - Pass - Entered '11:00 AM' into element: 'noDisturbStartTime'
+2024-12-30 16:52:30.592925 - Find Element - Pass - Located element: 'noDisturbEndTime'
+2024-12-30 16:52:30.691773 - Send Keys - Pass - Entered '12:00 PM' into element: 'noDisturbEndTime'
+2024-12-30 16:52:32.868263 - Find Element - Pass - Located element: 'healerRank'
+2024-12-30 16:52:32.954125 - Send Keys - Pass - Entered '1.2' into element: 'healerRank'
+2024-12-30 16:52:35.210959 - Send Keys - Pass - Entered '30' into element: 'healingsPerDay'
+2024-12-30 16:52:37.418177 - Send Keys - Pass - Entered '16' into element: 'healingTimeMins'
+2024-12-30 16:52:39.632292 - Send Keys - Pass - Entered '2' into element: 'experienceInMonths'
+2024-12-30 16:52:41.725876 - Execute Script - Pass - Executed script: 'window.scrollBy(0, -700);' with arguments: ()
+2024-12-30 16:52:42.828846 - Click - Pass - Clicked element: 'Choose an option'
+2024-12-30 16:52:44.916684 - Execute Script - Pass - Executed script: 'arguments[0].scrollIntoView(true);' with arguments: (<selenium.webdriver.remote.webelement.WebElement (session="a7a36ee86fbc2cd1a9efb219f4f61d46", element="f.A24860029D55F13A074B51FBEF7C3EC0.d.BDEB545E4C4CB1C0C9CA51508A2C0F99.e.794")>,)
+2024-12-30 16:52:44.935002 - Execute Script - Pass - Executed script: 'arguments[0].scrollIntoView(true);' with arguments: (<selenium.webdriver.remote.webelement.WebElement (session="a7a36ee86fbc2cd1a9efb219f4f61d46", element="f.A24860029D55F13A074B51FBEF7C3EC0.d.BDEB545E4C4CB1C0C9CA51508A2C0F99.e.814")>,)
+2024-12-30 16:52:46.037764 - Execute Script - Pass - Executed script: 'arguments[0].scrollIntoView(true);' with arguments: (<selenium.webdriver.remote.webelement.WebElement (session="a7a36ee86fbc2cd1a9efb219f4f61d46", element="f.A24860029D55F13A074B51FBEF7C3EC0.d.BDEB545E4C4CB1C0C9CA51508A2C0F99.e.810")>,)
+2024-12-30 16:52:47.137141 - Execute Script - Pass - Executed script: 'arguments[0].scrollIntoView(true);' with arguments: (<selenium.webdriver.remote.webelement.WebElement (session="a7a36ee86fbc2cd1a9efb219f4f61d46", element="f.A24860029D55F13A074B51FBEF7C3EC0.d.BDEB545E4C4CB1C0C9CA51508A2C0F99.e.786")>,)
+2024-12-30 16:52:48.234870 - Execute Script - Pass - Executed script: 'arguments[0].scrollIntoView(true);' with arguments: (<selenium.webdriver.remote.webelement.WebElement (session="a7a36ee86fbc2cd1a9efb219f4f61d46", element="f.A24860029D55F13A074B51FBEF7C3EC0.d.BDEB545E4C4CB1C0C9CA51508A2C0F99.e.790")>,)
+2024-12-30 16:52:49.337833 - Execute Script - Pass - Executed script: 'arguments[0].scrollIntoView(true);' with arguments: (<selenium.webdriver.remote.webelement.WebElement (session="a7a36ee86fbc2cd1a9efb219f4f61d46", element="f.A24860029D55F13A074B51FBEF7C3EC0.d.BDEB545E4C4CB1C0C9CA51508A2C0F99.e.796")>,)
+2024-12-30 16:52:50.442341 - Execute Script - Pass - Executed script: 'arguments[0].scrollIntoView(true);' with arguments: (<selenium.webdriver.remote.webelement.WebElement (session="a7a36ee86fbc2cd1a9efb219f4f61d46", element="f.A24860029D55F13A074B51FBEF7C3EC0.d.BDEB545E4C4CB1C0C9CA51508A2C0F99.e.820")>,)
+2024-12-30 16:52:50.475327 - Execute Script - Pass - Executed script: 'arguments[0].scrollIntoView(true);' with arguments: (<selenium.webdriver.remote.webelement.WebElement (session="a7a36ee86fbc2cd1a9efb219f4f61d46", element="f.A24860029D55F13A074B51FBEF7C3EC0.d.BDEB545E4C4CB1C0C9CA51508A2C0F99.e.787")>,)
+2024-12-30 16:52:50.491470 - Execute Script - Pass - Executed script: 'arguments[0].scrollIntoView(true);' with arguments: (<selenium.webdriver.remote.webelement.WebElement (session="a7a36ee86fbc2cd1a9efb219f4f61d46", element="f.A24860029D55F13A074B51FBEF7C3EC0.d.BDEB545E4C4CB1C0C9CA51508A2C0F99.e.759")>,)
+2024-12-30 16:52:51.586934 - Execute Script - Pass - Executed script: 'arguments[0].scrollIntoView(true);' with arguments: (<selenium.webdriver.remote.webelement.WebElement (session="a7a36ee86fbc2cd1a9efb219f4f61d46", element="f.A24860029D55F13A074B51FBEF7C3EC0.d.BDEB545E4C4CB1C0C9CA51508A2C0F99.e.765")>,)
+2024-12-30 16:52:52.721992 - Find Element - Pass - Located element: 'Level 1
+                      Level 2
+                      Level 3'
+2024-12-30 16:52:54.844162 - Find Element - Pass - Located element: 'Not initiated
+                    Initiated
+                    Verification pending
+                    Verification hold
+                    Verification rejected
+                    Verified'
+2024-12-30 16:52:56.956724 - Find Element - Pass - Located element: 'Free
+                    Premium
+                    Lovenheal'
+2024-12-30 16:52:59.057402 - Find Element - Pass - Located element: 'dataVerified'
+2024-12-30 16:52:59.093885 - Click - Pass - Clicked element: 'dataVerified'
+2024-12-30 16:53:01.205623 - Find Element - Pass - Located element: 'automaticPayout'
+2024-12-30 16:53:01.241006 - Click - Pass - Clicked element: 'automaticPayout'
+2024-12-30 16:53:03.348252 - Find Element - Pass - Located element: 'isDistressedHelplineMember'
+2024-12-30 16:53:03.384778 - Click - Pass - Clicked element: 'isDistressedHelplineMember'
+2024-12-30 16:53:05.499432 - Find Element - Pass - Located element: 'input'
+2024-12-30 16:53:05.534757 - Click - Pass - Clicked element: 'form-check-input'
+2024-12-30 16:53:07.644789 - Find Element - Pass - Located element: 'This is a short bio example.'
+2024-12-30 16:53:07.738766 - Send Keys - Pass - Entered 'This is a short bio example.' into element: 'This is a short bio example.'
+2024-12-30 16:53:07.980587 - Find Element - Pass - Located element: 'This is a detailed long bio example, demonstrating automation of text input in textareas using Selenium.'
+2024-12-30 16:53:08.072224 - Send Keys - Pass - Entered 'This is a detailed long bio example, demonstrating automation of text input in textareas using Selenium.' into element: 'This is a detailed long bio example, demonstrating automation of text input in textareas using Selenium.'
+2024-12-30 16:53:11.664152 - Execute Script - Pass - Executed script: 'window.scrollBy(0, -700);' with arguments: ()
+2024-12-30 16:53:12.782649 - Click - Pass - Clicked element: 'Save'
+2024-12-30 16:53:16.202771 - Find Element - Pass - Located element: 'OK'
+2024-12-30 16:53:16.247489 - Click - Pass - Clicked element: 'OK'
+2024-12-30 16:53:18.875486 - Quit Browser - Pass - Closed the browser
