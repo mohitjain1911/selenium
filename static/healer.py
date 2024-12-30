@@ -299,7 +299,7 @@ def edit_healer(driver):
     experience_months_input.clear()  # Clear the existing value
     experience_months_input.send_keys("2")  # Set the new experience in months
     time.sleep(2)
-    scroll()
+    scroll(driver, direction="up", amount=700) 
     ######################################################################################################################################
     dropdown_selector = "#selectBox"  # Selector for the dropdown
     checkbox_selector = ".options input.option"  # Adjust to target checkboxes inside the dropdown
@@ -308,7 +308,7 @@ def edit_healer(driver):
     )
     dropdown.click()
     time.sleep(2)  # Wait for the dropdown to expand
-
+  
     # Step 2: Locate all checkboxes
     checkboxes = WebDriverWait(driver, 10).until(
         EC.presence_of_all_elements_located((By.CSS_SELECTOR, checkbox_selector))
@@ -390,7 +390,7 @@ def edit_healer(driver):
     print("All elements interacted with successfully.")
     time.sleep(3)
     
-    # scroll(driver, direction="up", amount=700) 
+    scroll(driver, direction="up", amount=700) 
     save_button = WebDriverWait(driver, 10).until(
         EC.presence_of_element_located((By.ID, "saveHealer"))
     )
