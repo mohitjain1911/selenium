@@ -113,6 +113,7 @@ def add_new_healer(driver):
 
         toggle_switch = driver.find_element(By.CSS_SELECTOR, ".toggle-switch_end_time")
         am_pm_value = random.choice(["AM", "PM"])
+        am_pm_value = "PM"
         # Get the current selected value by checking the "checked" attribute
         current_am_pm = driver.find_element(By.ID, "end_time_am").is_selected()
         if (am_pm_value == "AM" and not current_am_pm) or (am_pm_value == "PM" and current_am_pm):
