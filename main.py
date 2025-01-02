@@ -32,10 +32,10 @@ def admin_tasks(driver):
 
 
 def static_tasks(driver):
-    delete_healer(driver)
-    add_new_healer(driver)
-    edit_healer(driver)
-
+    # delete_healer(driver)
+    # add_new_healer(driver)
+    # edit_healer(driver)
+    filters(driver)
 
 def main():
     driver = login_to_dashboard()

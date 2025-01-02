@@ -505,26 +505,89 @@ def filters(driver):
     logging_driver.get("http://185.199.53.169:5000/getHealers")
     print("Navigated to 'getHealers' page.")
     time.sleep(3)
+    
     # Fetch customer names from the database
     customer_names = fetch_customer_names()
     if not customer_names:
         print("No customer names found in the database.")
         return
+    
+    #######################################################################################################################
+    # Open filter section
     filter_button = WebDriverWait(driver, 10).until(
         EC.element_to_be_clickable((By.CSS_SELECTOR, "button[data-bs-target='#open_filter']"))
     )
     filter_button.click()
-    # Wait for the input field to appear and interact with it
+    time.sleep(2)
+    
+    #######################################################################################################################
+    # Input healer name
     healer_input = WebDriverWait(driver, 10).until(
         EC.presence_of_element_located((By.ID, "search_healers"))
     )
     healer_input.clear()
-    healer_input.send_keys(customer_names)  # Replace with the desired healer name
-    healer_input.send_keys(Keys.RETURN)  # Optional: Trigger search if needed
-
-    # Additional actions or assertions
-    # Example: Wait for results to load
-    WebDriverWait(driver, 10).until(
-        EC.presence_of_element_located((By.CLASS_NAME, "result-class"))  # Update with actual class
+    healer_input.send_keys(customer_names)
+    print("Healer name applied in filter.")
+    time.sleep(2)
+    
+    #######################################################################################################################
+    # Select 'activeNow' dropdown
+    active_now_select = Select(WebDriverWait(driver, 10).until(
+        EC.presence_of_element_located((By.NAME, "activeNow"))
+    ))
+    active_now_select.select_by_visible_text("True")
+    print("Active now filter applied.")
+    time.sleep(2)
+    
+    #######################################################################################################################
+    # Select 'isHelplineMember' dropdown
+    helpline_member_select = Select(WebDriverWait(driver, 10).until(
+        EC.presence_of_element_located((By.NAME, "isHelplineMember"))
+    ))
+    helpline_member_select.select_by_visible_text("True")
+    print("Helpline member filter applied.")
+    time.sleep(2)
+    
+    #######################################################################################################################
+    # Select 'plan' dropdown
+    plan_options = ["Free", "Premium", "LovenHeal"]
+    random_plan = random.choice(plan_options)
+    
+    print(f"Random plan selected: {random_plan}")
+    plan_select = Select(WebDriverWait(driver, 10).until(
+        EC.presence_of_element_located((By.NAME, "plan"))
+    ))
+    plan_select.select_by_visible_text("Premium")
+    plan_select.select_by_visible_text(random_plan)
+    print("Plan filter applied.")
+    time.sleep(2)
+    
+    #######################################################################################################################
+    # Select 'isPaidlineMember' dropdown
+    paidline_member_select = Select(WebDriverWait(driver, 10).until(
+        EC.presence_of_element_located((By.NAME, "isPaidlineMember"))
+    ))
+    paidline_member_select.select_by_visible_text("True")
+    print("Paidline member filter applied.")
+    time.sleep(2)
+    
+    #######################################################################################################################
+    # Click the "Search" button
+    search_button = WebDriverWait(driver, 10).until(
+        EC.element_to_be_clickable((By.CSS_SELECTOR, "button[type='submit']"))
     )
-    print("Filter applied successfully!")
+    search_button.click()
+    print("Search button clicked.")
+    time.sleep(3)
+    
+    #######################################################################################################################
+    # Click the "Reset all" button
+    reset_button = WebDriverWait(driver, 10).until(
+        EC.element_to_be_clickable((By.CSS_SELECTOR, "button[type='reset']"))
+    )
+    reset_button.click()
+    print("Reset button clicked.")
+    time.sleep(3)
+    
+    #######################################################################################################################
+    
