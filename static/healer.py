@@ -418,6 +418,7 @@ def edit_healer(driver):
         except NoSuchElementException:
             # If neither button is found, handle accordingly
             print("No button found!")
+
 def delete_healer(driver):
     logging_driver = LoggingDriver(driver)
     logging_driver.get("http://185.199.53.169:5000/getHealers")
@@ -480,8 +481,8 @@ def delete_healer(driver):
             # If neither button is found, handle accordingly
             print("No button found!")
 
-
 def scroll(driver, direction="down", amount=700):
+
     """
     Scroll the page either up or down.
 
@@ -498,3 +499,32 @@ def scroll(driver, direction="down", amount=700):
 
     # Wait for the page to adjust after scrolling
     time.sleep(1)
+
+def filters(driver):
+    logging_driver = LoggingDriver(driver)
+    logging_driver.get("http://185.199.53.169:5000/getHealers")
+    print("Navigated to 'getHealers' page.")
+    time.sleep(3)
+    # Fetch customer names from the database
+    customer_names = fetch_customer_names()
+    if not customer_names:
+        print("No customer names found in the database.")
+        return
+    filter_button = WebDriverWait(driver, 10).until(
+        EC.element_to_be_clickable((By.CSS_SELECTOR, "button[data-bs-target='#open_filter']"))
+    )
+    filter_button.click()
+    # Wait for the input field to appear and interact with it
+    healer_input = WebDriverWait(driver, 10).until(
+        EC.presence_of_element_located((By.ID, "search_healers"))
+    )
+    healer_input.clear()
+    healer_input.send_keys(customer_names)  # Replace with the desired healer name
+    healer_input.send_keys(Keys.RETURN)  # Optional: Trigger search if needed
+
+    # Additional actions or assertions
+    # Example: Wait for results to load
+    WebDriverWait(driver, 10).until(
+        EC.presence_of_element_located((By.CLASS_NAME, "result-class"))  # Update with actual class
+    )
+    print("Filter applied successfully!")
