@@ -111,19 +111,25 @@ def add_new_healer(driver):
         time.sleep(2)
 
 
-        toggle_switch = driver.find_element(By.CSS_SELECTOR, ".toggle-switch_end_time")
+        toggle_switch = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable((By.CSS_SELECTOR, ".toggle-switch_end_time"))
+        )
+        # Choose AM or PM
         am_pm_value = random.choice(["AM", "PM"])
-        # Get the current selected value by checking the "checked" attribute
+        am_pm_value = "PM"
+        # Get the current selected value
         current_am_pm = driver.find_element(By.ID, "end_time_am").is_selected()
+        # Log current and desired states
+        print(f"Desired AM/PM: {am_pm_value}, Current State: {'AM' if current_am_pm else 'PM'}")
         if (am_pm_value == "AM" and not current_am_pm) or (am_pm_value == "PM" and current_am_pm):
-            # Click the toggle switch if the desired value is different from the current value
-            toggle_switch.click()
+            # Toggle if needed
+            driver.execute_script("arguments[0].click();", toggle_switch)
             print(f"Toggled start time period to {am_pm_value}")
         else:
             print(f"Start time period is already set to {am_pm_value}")
         time.sleep(2)
     
-        healing_minutes = random.randint(0, 59)
+        healing_minutes = random.randint(30, 90)
         healing_minutes_field = WebDriverWait(driver, 10).until(
             EC.visibility_of_element_located((By.ID, "healingTimeMins"))
         )
