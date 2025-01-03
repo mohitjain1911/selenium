@@ -150,3 +150,67 @@ def delete_remedy(driver):
     ok_button = driver.find_element(By.ID, "global_Success_Message_Btn")
     ok_button.click()
     time.sleep(3)  # Adjust the sleep time based on how long it takes for the
+
+def add_remedy(driver):
+    logging_driver = LoggingDriver(driver)
+    logging_driver.get("http://185.199.53.169:5000/getRemedy")
+    print("Navigated to remedy page.")
+    time.sleep(3)
+
+    wait = WebDriverWait(driver, 10)
+
+    # Locate and click the "New" button
+    print("Locating the New button...")
+    new_button = wait.until(EC.element_to_be_clickable((By.ID, "new")))
+    new_button.click()
+    print("Clicked on the New button.")
+    time.sleep(2)
+
+    # Enter Remedy Name
+    print("Entering remedy name...")
+    remedy_name_field = wait.until(
+        EC.presence_of_element_located((By.ID, "remedyName"))
+    )
+    random_name = generate_random_text(length=20)
+    remedy_name_field.send_keys(random_name)
+    print(f"Set remedy name to: {random_name}")
+    time.sleep(2)
+
+    # Select Remedy Type from the dropdown
+    print("Selecting remedy type...")
+    remedy_type_dropdown = wait.until(
+        EC.presence_of_element_located((By.ID, "remedyType"))
+    )
+    select = Select(remedy_type_dropdown)
+    remedy_types = [
+        option.get_attribute("value")
+        for option in select.options
+        if option.get_attribute("value")
+    ]
+    selected_remedy_type = random.choice(remedy_types)
+    select.select_by_value(selected_remedy_type)
+    print(f"Selected remedy type: {selected_remedy_type}")
+    time.sleep(2)
+
+    # Enter Remedy Description
+    print("Entering remedy description...")
+    remedy_description_field = wait.until(
+        EC.presence_of_element_located((By.ID, "remedyDescription"))
+    )
+    random_description = generate_random_text(length=40)
+    remedy_description_field.send_keys(random_description)
+    print(f"Set remedy description to: {random_description}")
+    time.sleep(2)
+
+    # Click the "Save Remedy" button
+    print("Locating and clicking the Save Remedy button...")
+    save_button = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, "button[type='submit']")))
+    save_button.click()
+    print("Remedy saved successfully.")
+    time.sleep(3)
+
+    # Confirm success
+    ok_button = wait.until(EC.element_to_be_clickable((By.ID, "global_Success_Message_Btn")))
+    ok_button.click()
+    print("Operation completed successfully.")
+    time.sleep(3)
