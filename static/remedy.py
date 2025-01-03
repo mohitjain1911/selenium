@@ -209,8 +209,14 @@ def add_remedy(driver):
     print("Remedy saved successfully.")
     time.sleep(3)
 
-    # Confirm success
-    ok_button = wait.until(EC.element_to_be_clickable((By.ID, "global_Success_Message_Btn")))
-    ok_button.click()
-    print("Operation completed successfully.")
-    time.sleep(3)
+    # # Confirm success
+    # ok_button = wait.until(EC.element_to_be_clickable((By.ID, "global_Success_Message_Btn")))
+    # ok_button.click()
+    # print("Operation completed successfully.")
+    # time.sleep(3)
+    # Click the final OK button to dismiss the modal
+    print("Locating the final OK button...")
+    final_ok_button = wait.until(EC.element_to_be_clickable((By.XPATH, "/html/body/div[15]/div/div/div/div[4]/div/button")))
+    final_ok_button.click()
+    print("Modal dismissed successfully.")
+    time.sleep(2)
