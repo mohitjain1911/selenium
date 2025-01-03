@@ -37,7 +37,8 @@ def static_tasks(driver):
     # add_new_healer(driver)
     # edit_healer(driver)
     # filters(driver)
-    edit_remedy(driver)
+    # edit_remedy(driver)
+    delete_remedy(driver)
     
 
 def main():

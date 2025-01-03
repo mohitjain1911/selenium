@@ -96,3 +96,54 @@ def edit_remedy(driver):
     ok_button = driver.find_element(By.ID, "global_Success_Message_Btn")
     ok_button.click()
     time.sleep(3)  # Adjust the sleep time based on how long it takes for the 
+
+def delete_remedy(driver):
+    
+    logging_driver = LoggingDriver(driver)
+    logging_driver.get("http://185.199.53.169:5000/getRemedy")
+    print("Navigated to remedy page.")
+    time.sleep(3)
+    
+    wait = WebDriverWait(driver, 10)
+    print("Locating remedy links...")
+    remedy_links = wait.until(
+        EC.presence_of_all_elements_located(
+            (By.CSS_SELECTOR, "a[href*='/individualremedy/']")
+        )
+    )
+    remedy_link = random.choice(remedy_links)
+    remedy_link.click()
+    print("Clicked on a remedy link.")
+    time.sleep(2)
+    # Locate and click the "Delete" button
+    print("Locating the Delete button...")
+    delete_button = wait.until(EC.element_to_be_clickable((By.ID, "delete")))
+    delete_button.click()
+    print("Clicked the Delete button.")
+    time.sleep(2)
+
+    # Handle the modal popup: click "Cancel" button
+    print("Locating the Cancel button in the modal...")
+    cancel_button = wait.until(
+        EC.element_to_be_clickable((By.CSS_SELECTOR, "button[data-bs-dismiss='modal']"))
+    )
+    cancel_button.click()
+    print("Clicked the Cancel button in the modal.")
+    time.sleep(2)
+
+    # Locate and click the "Delete" button again
+    print("Locating the Delete button again...")
+    delete_button = wait.until(EC.element_to_be_clickable((By.ID, "delete")))
+    delete_button.click()
+    print("Clicked the Delete button again.")
+    time.sleep(2)
+
+    # Confirm delete by clicking the confirmation "Delete" button in the modal
+    print("Locating the Confirm Delete button in the modal...")
+    confirm_delete_button = wait.until(
+        EC.element_to_be_clickable((By.ID, "confirmDeleteButton"))
+    )
+    confirm_delete_button.click()
+    print("Confirmed and executed the delete operation.")
+    time.sleep(2)
+
