@@ -5,6 +5,7 @@ from admin.coupounManagement import *
 from admin.leadsManagement import *
 from admin.user import *
 from utility.selenium_report import *
+from static.remedy import *
 def admin_tasks(driver):
     change_date(driver)
     delete(driver)  # Call delete coupoun functionality
@@ -35,7 +36,9 @@ def static_tasks(driver):
     # delete_healer(driver)
     # add_new_healer(driver)
     # edit_healer(driver)
-    filters(driver)
+    # filters(driver)
+    edit_remedy(driver)
+    
 
 def main():
     driver = login_to_dashboard()
