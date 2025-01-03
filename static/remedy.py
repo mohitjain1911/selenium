@@ -22,7 +22,6 @@ def generate_random_text(length=10):
     letters = string.ascii_letters + string.digits + " "
     return "".join(random.choice(letters) for _ in range(length))
 
-
 def edit_remedy(driver):
     logging_driver = LoggingDriver(driver)
     logging_driver.get("http://185.199.53.169:5000/getRemedy")
@@ -99,7 +98,6 @@ def edit_remedy(driver):
     ok_button.click()
     time.sleep(3)  # Adjust the sleep time based on how long it takes for the
 
-
 def delete_remedy(driver):
 
     logging_driver = LoggingDriver(driver)
@@ -149,3 +147,6 @@ def delete_remedy(driver):
     confirm_delete_button.click()
     print("Confirmed and executed the delete operation.")
     time.sleep(2)
+    ok_button = driver.find_element(By.ID, "global_Success_Message_Btn")
+    ok_button.click()
+    time.sleep(3)  # Adjust the sleep time based on how long it takes for the
