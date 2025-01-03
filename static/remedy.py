@@ -12,6 +12,7 @@ from selenium.common.exceptions import NoSuchElementException
 from utility.logs import LoggingDriver
 from selenium.webdriver.support.ui import Select
 
+
 def generate_random_text(length=10):
     """
     Generate a random string of a given length.
@@ -19,14 +20,15 @@ def generate_random_text(length=10):
     :return: Randomly generated string
     """
     letters = string.ascii_letters + string.digits + " "
-    return ''.join(random.choice(letters) for _ in range(length))
+    return "".join(random.choice(letters) for _ in range(length))
+
 
 def edit_remedy(driver):
     logging_driver = LoggingDriver(driver)
     logging_driver.get("http://185.199.53.169:5000/getRemedy")
     print("Navigated to remedy page.")
     time.sleep(3)
-    
+
     wait = WebDriverWait(driver, 10)
 
     # Locate the remedy ID link and click it
@@ -95,15 +97,16 @@ def edit_remedy(driver):
 
     ok_button = driver.find_element(By.ID, "global_Success_Message_Btn")
     ok_button.click()
-    time.sleep(3)  # Adjust the sleep time based on how long it takes for the 
+    time.sleep(3)  # Adjust the sleep time based on how long it takes for the
+
 
 def delete_remedy(driver):
-    
+
     logging_driver = LoggingDriver(driver)
     logging_driver.get("http://185.199.53.169:5000/getRemedy")
     print("Navigated to remedy page.")
     time.sleep(3)
-    
+
     wait = WebDriverWait(driver, 10)
     print("Locating remedy links...")
     remedy_links = wait.until(
@@ -146,4 +149,3 @@ def delete_remedy(driver):
     confirm_delete_button.click()
     print("Confirmed and executed the delete operation.")
     time.sleep(2)
-
