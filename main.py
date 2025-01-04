@@ -6,6 +6,7 @@ from admin.leadsManagement import *
 from admin.user import *
 from utility.selenium_report import *
 from static.remedy import *
+from static.offerings import *
 def admin_tasks(driver):
     change_date(driver)
     delete(driver)  # Call delete coupoun functionality
@@ -39,8 +40,8 @@ def static_tasks(driver):
     # filters(driver)
     # edit_remedy(driver)
     # delete_remedy(driver)
-    add_remedy(driver)
-    
+    # add_remedy(driver)
+    add_offerings(driver)
 
 def main():
     driver = login_to_dashboard()
