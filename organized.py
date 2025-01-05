@@ -44,11 +44,27 @@ class StaticTasks:
         healer.delete_healer(driver)
         healer.filters(driver)
 
+    def remedy(driver):
+        remedy.add_remedy(driver)
+        remedy.edit_remedy(driver)
+        remedy.delete_remedy(driver)
+    
+    def offerings(driver):
+        offerings.add_offerings(driver)
+        offerings.edit_offering(driver)
+        offerings.delete_offering(driver)
+    
+    def category(driver):
+        category.add_new_category(driver)
+        category.edit_category(driver)
+        category.delete_category(driver)
+        
+
     def perform(driver):
         StaticTasks.healer(driver)
-        # StaticTasks.manage(driver)
-        # StaticTasks.manage(driver)
-        # StaticTasks.manage(driver)
+        StaticTasks.remedy(driver)
+        StaticTasks.offerings(driver)
+        StaticTasks.category(driver)
     
 
 def main():
