@@ -7,6 +7,7 @@ from admin.user import *
 from utility.selenium_report import *
 from static.remedy import *
 from static.offerings import *
+from static.category import *
 def admin_tasks(driver):
     change_date(driver)
     delete(driver)  # Call delete coupoun functionality
@@ -43,7 +44,8 @@ def static_tasks(driver):
     # add_remedy(driver)
     # add_offerings(driver)
     # edit_offering(driver)
-    delete_offering(driver)
+    # delete_offering(driver)
+    add_new_category(driver)
 def main():
     driver = login_to_dashboard()
     try:
