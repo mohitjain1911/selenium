@@ -3,16 +3,13 @@ from admin import bookingManagement, coupounManagement, leadsManagement, user
 from utility.selenium_report import *
 from static import healer, remedy, offerings, category
 
-
 class AdminTasks:
-    @staticmethod
     def perform(driver):
         AdminTasks.manage_coupons(driver)
         AdminTasks.manage_leads(driver)
         AdminTasks.manage_users(driver)
         AdminTasks.change_roles(driver)
 
-    @staticmethod
     def manage_coupons(driver):
         coupounManagement.delete(driver)
         coupoun_names = coupounManagement.fetch_coupouns(driver)
@@ -20,51 +17,43 @@ class AdminTasks:
             print(f"Searching for coupon: {coupon_code}")
             coupounManagement.search_coupon_by_code(driver, coupon_code)
 
-    @staticmethod
     def manage_leads(driver):
         leadsManagement.delete_lead(driver)
         lead_names = leadsManagement.fetch_lead_names()
         for lead_name in lead_names:
             leadsManagement.search_lead_by_name(driver, lead_name)
+    def manage_bookings(driver):
+        bookingManagement.transfer_booking(driver)
 
-    @staticmethod
     def manage_users(driver):
         user.bulk_delete_users(driver)
         user.remove_user(driver)
         user.delete_user(driver)
         user.change_status(driver)
 
-    @staticmethod
     def change_roles(driver):
         user.change_role_api_user(driver)
         user.change_role_api_admin(driver)
         user.change_role_user(driver)
         user.change_role_admin(driver)
 
-
 class StaticTasks:
-    @staticmethod
-    def manage(driver):
-        """Perform all healer-related static tasks."""
+    def healer(driver):
         healer.add_new_healer(driver)
         healer.edit_healer(driver)
         healer.delete_healer(driver)
         healer.filters(driver)
 
-    @staticmethod
     def perform(driver):
-        StaticTasks.manage(driver)
-        StaticTasks.manage(driver)
-        StaticTasks.manage(driver)
-        StaticTasks.manage(driver)
+        StaticTasks.healer(driver)
+        # StaticTasks.manage(driver)
+        # StaticTasks.manage(driver)
+        # StaticTasks.manage(driver)
     
-
-
 
 def main():
     driver = login_to_dashboard()
     try:
-        # Uncomment the line below to perform admin tasks
         # AdminTasks.perform(driver)
         StaticTasks.perform(driver)
     finally:
