@@ -153,7 +153,7 @@ def edit_offering(driver):
             redeemable_element.click()
             print(f"Updated 'Is Redeemable' to: {'Yes' if new_redeemable_choice == 'true' else 'No'}")
         time.sleep(2)
-        
+
         # Edit the MRP
         mrp_field = driver.find_element(By.ID, "mrp")
         mrp_field.clear()
@@ -196,6 +196,54 @@ def edit_offering(driver):
         time.sleep(3)
 
         print("Offering updated successfully.")
+    except NoSuchElementException as e:
+        print(f"Error: {e}")
+    except Exception as e:
+        print(f"An unexpected error occurred: {e}")
+
+def delete_offering(driver):
+    logging_driver = LoggingDriver(driver)
+    logging_driver.get("http://185.199.53.169:5000/offerings")
+    print("Navigated to offerings page.")
+    time.sleep(3)
+
+    try:
+        # Wait for the offering table to load and select a random offering
+        offering_links = WebDriverWait(driver, 10).until(
+            EC.presence_of_all_elements_located((By.CSS_SELECTOR, "td.pe-0.text-start a"))
+        )
+        random_offering = random.choice(offering_links)
+        offering_name = random_offering.text
+        random_offering.click()
+        print(f"Selected and opened offering: {offering_name}")
+        time.sleep(2)
+
+        # Click the Delete button to open the confirmation modal
+        delete_button = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable((By.ID, "deleteOfferingBtn"))
+        )
+        delete_button.click()
+        print("Clicked the 'Delete' button.")
+        time.sleep(2)
+
+        # Handle the confirmation modal
+        confirm_delete_button = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable((By.ID, "confirm_delete_offering"))
+        )
+        confirm_delete_button.click()
+        print("Confirmed deletion in the modal.")
+        time.sleep(2)
+
+        # Handle the final "OK" button after deletion
+        ok_button = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable((By.XPATH, "/html/body/div[14]/div/div/div/div[3]/div/button"))
+        )
+        ok_button.click()
+        print("Clicked 'OK' to finalize deletion.")
+        time.sleep(2)
+
+        print(f"Offering '{offering_name}' deleted successfully.")
+
     except NoSuchElementException as e:
         print(f"Error: {e}")
     except Exception as e:
