@@ -139,6 +139,21 @@ def edit_offering(driver):
         print(f"Updated the 'Required Days' to: {new_days}")
         time.sleep(2)
 
+        # Check and log the "Is Redeemable" radio buttons
+        is_redeemable_yes = driver.find_element(By.ID, "isRedeemableYes")
+        is_redeemable_no = driver.find_element(By.ID, "isRedeemableNo")
+        if is_redeemable_yes.get_attribute("disabled") and is_redeemable_no.get_attribute("disabled"):
+            print("The 'Is Redeemable' options are disabled. No changes can be made.")
+        else:
+            # Optionally update the "Is Redeemable" value if enabled
+            new_redeemable_choice = random.choice(["true", "false"])
+            redeemable_element = driver.find_element(
+                By.CSS_SELECTOR, f'input[name="flexRadioDefault"][value="{new_redeemable_choice}"]'
+            )
+            redeemable_element.click()
+            print(f"Updated 'Is Redeemable' to: {'Yes' if new_redeemable_choice == 'true' else 'No'}")
+        time.sleep(2)
+        
         # Edit the MRP
         mrp_field = driver.find_element(By.ID, "mrp")
         mrp_field.clear()
