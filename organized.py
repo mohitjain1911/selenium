@@ -66,7 +66,6 @@ class StaticTasks:
         StaticTasks.offerings(driver)
         StaticTasks.category(driver)
     
-
 def main():
     driver = login_to_dashboard()
     try:
