@@ -46,7 +46,8 @@ def static_tasks(driver):
     # edit_offering(driver)
     # delete_offering(driver)
     # add_new_category(driver)
-    edit_category(driver)
+    # edit_category(driver)
+    delete_category(driver)
 def main():
     driver = login_to_dashboard()
     try:

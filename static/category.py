@@ -137,3 +137,74 @@ def edit_category(driver):
 
     except Exception as e:
         print(f"An unexpected error occurred: {e}")
+
+def delete_category(driver):
+    logging_driver = LoggingDriver(driver)
+    print("Navigating to the category management page...")
+    logging_driver.get("http://185.199.53.169:5000/static/category/get_all_category")
+    time.sleep(3)
+
+    try:
+        # Select a random row from the table
+        print("Selecting a random category to delete...")
+        table_rows = WebDriverWait(driver, 10).until(
+            EC.presence_of_all_elements_located((By.CSS_SELECTOR, "#table_body tr"))
+        )
+        random_row = random.choice(table_rows)
+        random_row.click()
+        time.sleep(2)
+
+        # Click the "Delete" button
+        print("Clicking the 'Delete' button...")
+        delete_button = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable((By.ID, "delete_button"))
+        )
+        delete_button.click()
+        time.sleep(2)
+
+        # Click the "No" button to dismiss the modal
+        print("Clicking 'No' to dismiss the delete confirmation modal...")
+        no_button = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable(
+                (By.CSS_SELECTOR, "button[onclick='condirm_action(false)']")
+            )
+        )
+        no_button.click()
+        time.sleep(2)
+
+        # Click the "Delete" button again
+        print("Clicking the 'Delete' button again...")
+        delete_button = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable((By.ID, "delete_button"))
+        )
+        delete_button.click()
+        time.sleep(2)
+
+        # Click the "Yes" button to confirm deletion
+        print("Confirming deletion by clicking 'Yes'...")
+        yes_button = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable(
+                (By.ID, "yes_i_confirm")
+            )
+        )
+        yes_button.click()
+        time.sleep(2)
+
+        # Final confirmation
+        print("Handling final confirmation...")
+        final_confirm_button = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable(
+                (By.XPATH, "/html/body/div[14]/div/div/div/div[3]/div/button")
+            )
+        )
+        final_confirm_button.click()
+        time.sleep(2)
+
+        print("Category deleted successfully!")
+
+    except NoSuchElementException as e:
+        print(f"An element was not found: {e}")
+
+    except Exception as e:
+        print(f"An unexpected error occurred: {e}")
+
