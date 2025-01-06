@@ -1,7 +1,7 @@
 from utility.login import login_to_dashboard
 from admin import bookingManagement, coupounManagement, leadsManagement, user
 from utility.selenium_report import *
-from static import healer, remedy, offerings, category
+from static import healer, remedy, offerings, category, addresses
 
 class AdminTasks:
     def perform(driver):
@@ -59,12 +59,17 @@ class StaticTasks:
         category.edit_category(driver)
         category.delete_category(driver)
         
+    def addresses(driver):
+        addresses.add_addresses(driver)
+        # addresses.edit_category(driver)
+        # addresses.delete_category(driver)
 
     def perform(driver):
-        StaticTasks.healer(driver)
-        StaticTasks.remedy(driver)
-        StaticTasks.offerings(driver)
-        StaticTasks.category(driver)
+        # StaticTasks.healer(driver)
+        # StaticTasks.remedy(driver)
+        # StaticTasks.offerings(driver)
+        # StaticTasks.category(driver)
+        StaticTasks.addresses(driver)
     
 def main():
     driver = login_to_dashboard()
