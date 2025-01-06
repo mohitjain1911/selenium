@@ -61,8 +61,8 @@ class StaticTasks:
         
     def addresses(driver):
         # addresses.add_addresses(driver)
-        addresses.edit_addresses(driver)
-        # addresses.delete_category(driver)
+        # addresses.edit_addresses(driver)
+        addresses.delete_addresses(driver)
 
     def perform(driver):
         # StaticTasks.healer(driver)

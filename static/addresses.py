@@ -234,3 +234,26 @@ def edit_addresses(driver):
 
     print("Changes saved successfully.")
 
+def delete_addresses(driver):
+    driver.get("http://185.199.53.169:5000/static/get_all_address")
+    time.sleep(3)
+
+    click_random_link_in_table(driver)
+
+    print("Clicking the 'Delete' button...")
+    delete_button = WebDriverWait(driver, 10).until(
+        EC.element_to_be_clickable((By.ID, "delete_button"))
+    )
+    delete_button.click()
+    time.sleep(2)
+    print("Confirming deletion...")
+    confirm_button = WebDriverWait(driver, 10).until(
+        EC.element_to_be_clickable((By.ID, "yes_i_confirm"))
+    )
+    print("Final OK")
+    confirm_button = WebDriverWait(driver, 10).until(
+        EC.element_to_be_clickable((By.XPATH, "/html/body/div[10]/div/div/div/div[3]/div/button"))
+    )
+    confirm_button.click()
+    print("Address deleted successfully.")
+    time.sleep(2)
