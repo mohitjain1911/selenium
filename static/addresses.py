@@ -190,7 +190,7 @@ def edit_addresses(driver):
     locality_input.clear()
     locality_input.send_keys("Uptown Avenue")
     time.sleep(2)
-    
+
     print("Selecting a random country...")
     selected_country = select_random_option_from_dropdown(driver, "country")
     time.sleep(2)
@@ -219,8 +219,18 @@ def edit_addresses(driver):
 
     print("Saving changes...")
     save_button = WebDriverWait(driver, 10).until(
-        EC.element_to_be_clickable((By.CSS_SELECTOR, "button[type='submit']"))
+        EC.element_to_be_clickable((By.ID, "update_button"))
     )
     save_button.click()
     time.sleep(2)
+
+    print("Clicking the 'Update' button...")
+    update_button = WebDriverWait(driver, 10).until(
+        EC.element_to_be_clickable((By.XPATH, "/html/body/div[11]/div/div/div/div[3]/div/button"))
+    )
+    update_button.click()
+    print("Update confirmed.")
+    time.sleep(2)
+
     print("Changes saved successfully.")
+
