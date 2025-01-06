@@ -1,81 +1,58 @@
-from utility.login import login_to_dashboard
-from admin import bookingManagement, coupounManagement, leadsManagement, user
+from utility.login import *
+from static.healer import *
+from admin.bookingManagement import *
+from admin.coupounManagement import *
+from admin.leadsManagement import *
+from admin.user import *
 from utility.selenium_report import *
-from static import healer, remedy, offerings, category, addresses
+from static.remedy import *
+from static.offerings import *
+from static.category import *
+def admin_tasks(driver):
+    change_date(driver)
+    delete(driver)  # Call delete coupoun functionality
+    delete_lead(driver)  # Call delete lead functionality
+    toggle_checkboxes(driver)  # Call toggle checkbox functionality
+    transfer_booking(driver)
+    bulk_delete_users(driver)
 
-class AdminTasks:
-    def perform(driver):
-        AdminTasks.manage_coupons(driver)
-        AdminTasks.manage_leads(driver)
-        AdminTasks.manage_users(driver)
-        AdminTasks.change_roles(driver)
+    lead_names = fetch_lead_names()
+    for lead_name in lead_names:
+        search_lead_by_name(driver, lead_name)
 
-    def manage_coupons(driver):
-        coupounManagement.delete(driver)
-        coupoun_names = coupounManagement.fetch_coupouns(driver)
-        for coupon_code in coupoun_names:
-            print(f"Searching for coupon: {coupon_code}")
-            coupounManagement.search_coupon_by_code(driver, coupon_code)
+    coupoun_names = fetch_coupouns(driver)
+    for coupon_code in coupoun_names:
+        print(f"Searching for coupon: {coupon_code}")
+        search_coupon_by_code(driver, coupon_code)
 
-    def manage_leads(driver):
-        leadsManagement.delete_lead(driver)
-        lead_names = leadsManagement.fetch_lead_names()
-        for lead_name in lead_names:
-            leadsManagement.search_lead_by_name(driver, lead_name)
-    def manage_bookings(driver):
-        bookingManagement.transfer_booking(driver)
+    change_role_api_user(driver)
+    change_role_api_admin(driver)
+    change_role_user(driver)
+    change_role_admin(driver)
+    remove_user(driver)
+    delete_user(driver)
+    change_status(driver)
 
-    def manage_users(driver):
-        user.bulk_delete_users(driver)
-        user.remove_user(driver)
-        user.delete_user(driver)
-        user.change_status(driver)
 
-    def change_roles(driver):
-        user.change_role_api_user(driver)
-        user.change_role_api_admin(driver)
-        user.change_role_user(driver)
-        user.change_role_admin(driver)
-
-class StaticTasks:
-    def healer(driver):
-        healer.add_new_healer(driver)
-        healer.edit_healer(driver)
-        healer.delete_healer(driver)
-        healer.filters(driver)
-
-    def remedy(driver):
-        remedy.add_remedy(driver)
-        remedy.edit_remedy(driver)
-        remedy.delete_remedy(driver)
-    
-    def offerings(driver):
-        offerings.add_offerings(driver)
-        offerings.edit_offering(driver)
-        offerings.delete_offering(driver)
-    
-    def category(driver):
-        category.add_new_category(driver)
-        category.edit_category(driver)
-        category.delete_category(driver)
-        
-    def addresses(driver):
-        addresses.add_addresses(driver)
-        # addresses.edit_category(driver)
-        # addresses.delete_category(driver)
-
-    def perform(driver):
-        # StaticTasks.healer(driver)
-        # StaticTasks.remedy(driver)
-        # StaticTasks.offerings(driver)
-        # StaticTasks.category(driver)
-        StaticTasks.addresses(driver)
-    
+def static_tasks(driver):
+    # delete_healer(driver)
+    # add_new_healer(driver)
+    # edit_healer(driver)
+    # filters(driver)
+    # edit_remedy(driver)
+    # delete_remedy(driver)
+    # add_remedy(driver)
+    # add_offerings(driver)
+    # edit_offering(driver)
+    # delete_offering(driver)
+    # add_new_category(driver)
+    # edit_category(driver)
+    delete_category(driver)
 def main():
     driver = login_to_dashboard()
     try:
-        # AdminTasks.perform(driver)
-        StaticTasks.perform(driver)
+        # admin_tasks(driver)
+        static_tasks(driver)
     finally:
         driver.quit()
 
