@@ -60,8 +60,8 @@ class StaticTasks:
         category.delete_category(driver)
         
     def addresses(driver):
-        # addresses.add_addresses(driver)
-        # addresses.edit_addresses(driver)
+        addresses.add_addresses(driver)
+        addresses.edit_addresses(driver)
         addresses.delete_addresses(driver)
 
     def perform(driver):
