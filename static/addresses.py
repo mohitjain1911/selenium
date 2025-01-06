@@ -125,11 +125,16 @@ def add_addresses(driver):
     postal_code_input.send_keys("411048")
     time.sleep(2)
 
-    # # Click the "Save" button
-    # print("Clicking the 'Save' button...")
-    # save_button = WebDriverWait(driver, 10).until(
-    #     EC.element_to_be_clickable((By.CSS_SELECTOR, "button[type='submit']"))
-    # )
-    # save_button.click()
-    # time.sleep(2)
+    # Click the "Save" button
+    add_address_button = WebDriverWait(driver, 10).until(
+        EC.element_to_be_clickable((By.CSS_SELECTOR, "button.btn.btn-primary.btn-sm"))
+    )
+    add_address_button.click()
+    print("Clicked the 'Add Address' button.")
+    time.sleep(2)
+    OK = WebDriverWait(driver, 10).until(
+        EC.element_to_be_clickable((By.XPATH, "/html/body/div[13]/div/div/div/div[4]/div/button"))
+    )
+    OK.click()
+    time.sleep(2)
     # print("Address added successfully!")
