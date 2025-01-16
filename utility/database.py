@@ -62,3 +62,26 @@ def fetch_category_names():
         print(f"Database error: {e}")
         return []
     
+def fetch_coupouns():
+    try: 
+        # Establish database connection
+        conn = mysql.connector.connect(
+            host=config['host'],
+            user=config['db_user'],
+            password=config['db_password'],
+            database=config['database'],
+            port=config['port']
+        )
+        cursor = conn.cursor()
+
+        # Query to fetch coupon codes
+        query = "SELECT name FROM coupons LIMIT 1"  # Example: Fetching first 10 coupon codes
+        cursor.execute(query)
+        coupoun_names = [row[0] for row in cursor.fetchall()]  # Extract coupon codes
+
+        conn.close()
+        return coupoun_names
+        
+    except mysql.connector.Error as err:
+        print(f"Database Error: {err}")
+        return []

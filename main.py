@@ -2,17 +2,18 @@ from utility.login import login_to_dashboard
 from admin import bookingManagement, coupounManagement, leadsManagement, user
 from utility.selenium_report import *
 from static import healer, remedy, offerings, category, addresses
-
+from utility.database import fetch_coupouns
 class AdminTasks:
     def perform(driver):
         AdminTasks.manage_coupons(driver)
-        AdminTasks.manage_leads(driver)
-        AdminTasks.manage_users(driver)
-        AdminTasks.change_roles(driver)
+        # AdminTasks.manage_leads(driver)
+        # AdminTasks.manage_users(driver)
+        # AdminTasks.change_roles(driver)
 
     def manage_coupons(driver):
         coupounManagement.delete(driver)
-        coupoun_names = coupounManagement.fetch_coupouns(driver)
+        coupounManagement.actions(driver)
+        coupoun_names = fetch_coupouns()
         for coupon_code in coupoun_names:
             print(f"Searching for coupon: {coupon_code}")
             coupounManagement.search_coupon_by_code(driver, coupon_code)
@@ -74,8 +75,8 @@ class StaticTasks:
 def main():
     driver = login_to_dashboard()
     try:
-        # AdminTasks.perform(driver)
-        StaticTasks.perform(driver)
+        AdminTasks.perform(driver)
+        # StaticTasks.perform(driver)
     finally:
         driver.quit()
 

@@ -8,6 +8,7 @@ from selenium.webdriver.common.action_chains import ActionChains
 import time
 import random
 
+
 def actions(driver):
 
     try:
@@ -149,40 +150,40 @@ def delete(driver):
         back_btn = driver.find_element(By.CSS_SELECTOR, ".pointer.text-secondary")
         back_btn.click()
         print("back Success")
-def fetch_coupouns(driver):
-    driver.get("http://185.199.53.169:5000/admin/coupons-management")
-    time.sleep(3)
+# def fetch_coupouns(driver):
+#     driver.get("http://185.199.53.169:5000/admin/coupons-management")
+#     time.sleep(3)
     
-    """
-    Connects to the database and retrieves a list of coupon codes.
-    Returns a list of coupon codes.
-    """
-    from dotenv import dotenv_values  # Load database config
-    import mysql.connector
-    config = dotenv_values("config.txt")
+#     """
+#     Connects to the database and retrieves a list of coupon codes.
+#     Returns a list of coupon codes.
+#     """
+#     from dotenv import dotenv_values  # Load database config
+#     import mysql.connector
+#     config = dotenv_values("utility/config.txt")
 
-    try:
-        # Establish database connection
-        conn = mysql.connector.connect(
-            host=config['host'],
-            user=config['db_user'],
-            password=config['db_password'],
-            database=config['database'],
-            port=config['port']
-        )
-        cursor = conn.cursor()
+#     try: 
+#         # Establish database connection
+#         conn = mysql.connector.connect(
+#             host=config['host'],
+#             user=config['db_user'],
+#             password=config['db_password'],
+#             database=config['database'],
+#             port=config['port']
+#         )
+#         cursor = conn.cursor()
 
-        # Query to fetch coupon codes
-        query = "SELECT name FROM coupons LIMIT 1"  # Example: Fetching first 10 coupon codes
-        cursor.execute(query)
-        coupoun_names = [row[0] for row in cursor.fetchall()]  # Extract coupon codes
+#         # Query to fetch coupon codes
+#         query = "SELECT name FROM coupons LIMIT 1"  # Example: Fetching first 10 coupon codes
+#         cursor.execute(query)
+#         coupoun_names = [row[0] for row in cursor.fetchall()]  # Extract coupon codes
 
-        conn.close()
-        return coupoun_names
+#         conn.close()
+#         return coupoun_names
         
-    except mysql.connector.Error as err:
-        print(f"Database Error: {err}")
-        return []
+#     except mysql.connector.Error as err:
+#         print(f"Database Error: {err}")
+#         return []
 def search_coupon_by_code(driver, coupon_code):
     """
     Searches for a coupon by code using the search field on the Coupons Management page.
