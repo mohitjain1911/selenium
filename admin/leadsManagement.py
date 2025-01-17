@@ -15,18 +15,17 @@ def delete_lead(driver):
         driver.get("http://185.199.53.169:5000/admin/leads-management")
         time.sleep(2)  # Wait for the page to load
 
-        # Locate the "Delete Lead" button using CSS selector
         delete_button = driver.find_element(By.CSS_SELECTOR, "div.border.border-primary.d-flex.align-items-center.p-1.gap-2.pointer div:nth-child(2)")
-
-        # Click the button to test its functionality
         delete_button.click()
         print("Delete Lead button clicked.")
-
-        time.sleep(3)
-        WebDriverWait(driver, 10).until(
-            EC.invisibility_of_element_located((By.ID, "loading"))
+        time.sleep(2)
+        
+        confirmation_button = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable((By.ID, "confirm-yes"))
         )
-
+        confirmation_button.click()
+        print("Confirmation clicked for bulk delete.")
+        print("Button clicked successfully.")
         # Handle success/error message
         time.sleep(2)
         try:

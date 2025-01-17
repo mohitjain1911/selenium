@@ -25,6 +25,10 @@ class AdminTasks:
         lead_names = fetch_lead_names()
         for lead_name in lead_names:
             leadsManagement.search_lead_by_name(driver, lead_name)
+        leadsManagement.toggle_checkboxes(driver)
+        leadsManagement.bulk_delete_users(driver)
+        
+
     def manage_bookings(driver):
         bookingManagement.transfer_booking(driver)
 
