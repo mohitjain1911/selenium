@@ -8,9 +8,9 @@ from utility.database import fetch_lead_names
 class AdminTasks:
     def perform(driver):
         # AdminTasks.manage_coupons(driver)
-        AdminTasks.manage_leads(driver)
+        # AdminTasks.manage_leads(driver)
         # AdminTasks.manage_users(driver)
-        # AdminTasks.change_roles(driver)
+        AdminTasks.change_roles(driver)
 
     def manage_coupons(driver):
         coupounManagement.delete(driver)
