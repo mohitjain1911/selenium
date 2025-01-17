@@ -8,7 +8,6 @@ from selenium.webdriver.common.action_chains import ActionChains
 import time
 import random
 
-
 def actions(driver):
 
     try:

@@ -3,10 +3,12 @@ from admin import bookingManagement, coupounManagement, leadsManagement, user
 from utility.selenium_report import *
 from static import healer, remedy, offerings, category, addresses
 from utility.database import fetch_coupouns
+from utility.database import fetch_lead_names
+
 class AdminTasks:
     def perform(driver):
-        AdminTasks.manage_coupons(driver)
-        # AdminTasks.manage_leads(driver)
+        # AdminTasks.manage_coupons(driver)
+        AdminTasks.manage_leads(driver)
         # AdminTasks.manage_users(driver)
         # AdminTasks.change_roles(driver)
 
@@ -20,14 +22,13 @@ class AdminTasks:
 
     def manage_leads(driver):
         leadsManagement.delete_lead(driver)
-        lead_names = leadsManagement.fetch_lead_names()
+        lead_names = fetch_lead_names()
         for lead_name in lead_names:
             leadsManagement.search_lead_by_name(driver, lead_name)
     def manage_bookings(driver):
         bookingManagement.transfer_booking(driver)
 
     def manage_users(driver):
-        user.bulk_delete_users(driver)
         user.remove_user(driver)
         user.delete_user(driver)
         user.change_status(driver)

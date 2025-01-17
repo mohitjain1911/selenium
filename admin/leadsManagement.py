@@ -37,7 +37,6 @@ def delete_lead(driver):
     except Exception as e:
         print(f"Error occurred: {e}")
 
-
 def toggle_checkboxes(driver):
 
     try:
@@ -77,40 +76,6 @@ def toggle_checkboxes(driver):
     except Exception as e:
         print(f"Error occurred while toggling checkboxes: {e}")
 
-
-
-
-# Function to connect to the database and fetch lead names
-def fetch_lead_names():
-    """
-    Connects to the database and retrieves a list of lead names.
-    Returns a list of lead names.
-    """
-    from dotenv import dotenv_values  # Load database config
-    config = dotenv_values("config.txt")
-
-    try:
-        # Establish database connection
-        conn = mysql.connector.connect(
-            host=config['host'],
-            user=config['db_user'],
-            password=config['db_password'],
-            database=config['database'],
-            port=config['port']
-        )
-        cursor = conn.cursor()
-
-        # Query to fetch names
-        query = "SELECT name FROM marketing_leads LIMIT 1"  # Update the table name to your actual table
-        cursor.execute(query)
-        lead_names = [row[0] for row in cursor.fetchall()]  # Extract names
-
-        conn.close()
-        return lead_names
-    except mysql.connector.Error as err:
-        print(f"Database Error: {err}")
-        return []
-
 # Function to search for a lead by name
 def search_lead_by_name(driver, lead_name):
     """
@@ -141,6 +106,7 @@ def search_lead_by_name(driver, lead_name):
         print(f"Lead '{lead_name}' not found.")
     except Exception as e:
         print(f"Error occurred while searching for lead '{lead_name}': {e}")
+        
 def scroll_into_view(driver, element):
     """
     Scrolls the page so that the specified element is in the viewport.

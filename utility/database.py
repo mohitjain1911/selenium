@@ -32,7 +32,30 @@ def fetch_customer_names():
     except mysql.connector.Error as e:
         print(f"Database error: {e}")
         return []
+def fetch_lead_names():
+   
+    try:
+        # Establish database connection
+        conn = mysql.connector.connect(
+            host=config['host'],
+            user=config['db_user'],
+            password=config['db_password'],
+            database=config['database'],
+            port=config['port']
+        )
+        cursor = conn.cursor()
 
+        # Query to fetch names
+        query = "SELECT name FROM marketing_leads LIMIT 1"  # Update the table name to your actual table
+        cursor.execute(query)
+        lead_names = [row[0] for row in cursor.fetchall()]  # Extract names
+
+        conn.close()
+        return lead_names
+    except mysql.connector.Error as err:
+        print(f"Database Error: {err}")
+        return []
+    
 def fetch_category_names():
     """
     Fetches customer names from the database.
