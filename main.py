@@ -4,7 +4,7 @@ from utility.selenium_report import *
 from static import healer, remedy, offerings, category, addresses
 from utility.database import fetch_coupouns
 from utility.database import fetch_lead_names
-
+from files import files
 class AdminTasks:
     def perform(driver):
         # AdminTasks.manage_coupons(driver)
@@ -77,10 +77,16 @@ class StaticTasks:
         # StaticTasks.category(driver)
         StaticTasks.addresses(driver)
     
+class Files:
+    def filters(driver):
+        files.filters(driver)
+    def perform(driver):
+        Files.filters(driver)
 def main():
     driver = login_to_dashboard()
     try:
-        AdminTasks.perform(driver)
+        Files.perform(driver)
+        # AdminTasks.perform(driver)
         # StaticTasks.perform(driver)
     finally:
         driver.quit()
