@@ -1,16 +1,22 @@
 from utility.login import login_to_dashboard
-from admin import bookingManagement, coupounManagement, leadsManagement, user
+from admin import bookingManagement, coupounManagement, leadsManagement, user, healingManagement
 from utility.selenium_report import *
 from static import healer, remedy, offerings, category, addresses
 from utility.database import fetch_coupouns
 from utility.database import fetch_lead_names
 from files import files
+
 class AdminTasks:
     def perform(driver):
         # AdminTasks.manage_coupons(driver)
         # AdminTasks.manage_leads(driver)
         # AdminTasks.manage_users(driver)
-        AdminTasks.change_roles(driver)
+        # AdminTasks.change_roles(driver)
+        # AdminTasks.manage_bookings(driver)
+        AdminTasks.manage_healings(driver)
+    
+    def manage_healings(driver):
+        healingManagement.transfer_healing(driver)
 
     def manage_coupons(driver):
         coupounManagement.delete(driver)
@@ -85,8 +91,8 @@ class Files:
 def main():
     driver = login_to_dashboard()
     try:
-        Files.perform(driver)
-        # AdminTasks.perform(driver)
+        # Files.perform(driver)
+        AdminTasks.perform(driver)
         # StaticTasks.perform(driver)
     finally:
         driver.quit()
