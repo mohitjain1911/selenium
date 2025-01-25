@@ -1,110 +1,68 @@
 import mysql.connector
+from mysql.connector import Error
 from dotenv import dotenv_values
 
 # Load database configuration
 config = dotenv_values('utility/config.txt')
 
-def fetch_customer_names():
+def execute_query(query, fetch_all=True):
     """
-    Fetches customer names from the database.
-    Returns a list of customer names.
-    """
-    try:
-        connection = mysql.connector.connect(
-            host=config['host'],
-            user=config['db_user'],
-            password=config['db_password'],
-            database=config['database'],
-            port=config['port']
-        )
-
-        cursor = connection.cursor()
-        cursor.execute("SELECT first_name FROM users ORDER BY RAND() LIMIT 1")  # Update the table/column names as needed
-        results = cursor.fetchall()
-
-        # Extract names from query results
-        customer_names = [row[0] for row in results]
-
-        cursor.close()
-        connection.close()
-
-        return customer_names
-    except mysql.connector.Error as e:
-        print(f"Database error: {e}")
-        return []
-def fetch_lead_names():
-   
-    try:
-        # Establish database connection
-        conn = mysql.connector.connect(
-            host=config['host'],
-            user=config['db_user'],
-            password=config['db_password'],
-            database=config['database'],
-            port=config['port']
-        )
-        cursor = conn.cursor()
-
-        # Query to fetch names
-        query = "SELECT name FROM marketing_leads LIMIT 1"  # Update the table name to your actual table
-        cursor.execute(query)
-        lead_names = [row[0] for row in cursor.fetchall()]  # Extract names
-
-        conn.close()
-        return lead_names
-    except mysql.connector.Error as err:
-        print(f"Database Error: {err}")
-        return []
+    Executes a query on the database and returns the results.
     
-def fetch_category_names():
-    """
-    Fetches customer names from the database.
-    Returns a list of customer names.
-    """
-    try:
-        connection = mysql.connector.connect(
-            host=config['host'],
-            user=config['db_user'],
-            password=config['db_password'],
-            database=config['database'],
-            port=config['port']
-        )
-
-        cursor = connection.cursor()
-        cursor.execute("SELECT name FROM categories ORDER BY RAND() LIMIT 1")  # Update the table/column names as needed
-        results = cursor.fetchall()
-
-        # Extract names from query results
-        customer_names = [row[0] for row in results]
-
-        cursor.close()
-        connection.close()
-
-        return customer_names
-    except mysql.connector.Error as e:
-        print(f"Database error: {e}")
-        return []
-    
-def fetch_coupouns():
-    try: 
-        # Establish database connection
-        conn = mysql.connector.connect(
-            host=config['host'],
-            user=config['db_user'],
-            password=config['db_password'],
-            database=config['database'],
-            port=config['port']
-        )
-        cursor = conn.cursor()
-
-        # Query to fetch coupon codes
-        query = "SELECT name FROM coupons LIMIT 1"  # Example: Fetching first 10 coupon codes
-        cursor.execute(query)
-        coupoun_names = [row[0] for row in cursor.fetchall()]  # Extract coupon codes
-
-        conn.close()
-        return coupoun_names
+    Parameters:
+        query (str): SQL query to execute.
+        fetch_all (bool): Whether to fetch all results or just one.
         
-    except mysql.connector.Error as err:
-        print(f"Database Error: {err}")
+    Returns:
+        list: Query results as a list of tuples or an empty list on error.
+    """
+    try:
+        # Establish a connection
+        connection = mysql.connector.connect(
+            host=config['host'],
+            user=config['db_user'],
+            password=config['db_password'],
+            database=config['database'],
+            port=config['port']
+        )
+        cursor = connection.cursor()
+        cursor.execute(query)
+
+        # Fetch results
+        if fetch_all:
+            results = cursor.fetchall()
+        else:
+            results = cursor.fetchone()
+        
+        cursor.close()
+        connection.close()
+
+        return results
+    except Error as e:
+        print(f"Database Error: {e}")
         return []
+
+def fetch_customer_names():
+    """Fetches customer names from the 'users' table."""
+    query = "SELECT first_name FROM users ORDER BY RAND() LIMIT 1"
+    return [row[0] for row in execute_query(query)]
+
+def fetch_lead_names():
+    """Fetches lead names from the 'marketing_leads' table."""
+    query = "SELECT name FROM marketing_leads LIMIT 1"
+    return [row[0] for row in execute_query(query)]
+
+def fetch_category_names():
+    """Fetches category names from the 'categories' table."""
+    query = "SELECT name FROM categories ORDER BY RAND() LIMIT 1"
+    return [row[0] for row in execute_query(query)]
+
+def fetch_coupons():
+    """Fetches coupon names from the 'coupons' table."""
+    query = "SELECT name FROM coupons LIMIT 1"
+    return [row[0] for row in execute_query(query)]
+
+def fetch_healer_name():
+    """Fetches healer names from the 'healers' table."""
+    query = "SELECT healer_name FROM healers LIMIT 1"
+    return [row[0] for row in execute_query(query)]
