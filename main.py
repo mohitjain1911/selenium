@@ -2,7 +2,7 @@ from utility.login import login_to_dashboard
 from admin import bookingManagement, coupounManagement, leadsManagement, user, healingManagement
 from utility.selenium_report import *
 from static import healer, remedy, offerings, category, addresses
-from utility.database import fetch_coupouns
+from utility.database import fetch_coupons
 from utility.database import fetch_lead_names
 from files import files
 
@@ -21,7 +21,7 @@ class AdminTasks:
     def manage_coupons(driver):
         coupounManagement.delete(driver)
         coupounManagement.actions(driver)
-        coupoun_names = fetch_coupouns()
+        coupoun_names = fetch_coupons()
         for coupon_code in coupoun_names:
             print(f"Searching for coupon: {coupon_code}")
             coupounManagement.search_coupon_by_code(driver, coupon_code)
