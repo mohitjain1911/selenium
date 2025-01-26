@@ -39,7 +39,3 @@ def transfer_healing(driver):
         # Add a short wait before ending
         time.sleep(2)
 
-# Example usage:
-# from selenium import webdriver
-# driver = webdriver.Chrome()
-# transfer_healing(driver)
